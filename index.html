@@ -12,8 +12,6 @@ body{
 margin:0;
 font-family:Poppins;
 background:#f4f7fa;
-position:relative;
-z-index:1;
 }
 
 header{
@@ -32,10 +30,10 @@ box-shadow:0 2px 10px rgba(0,0,0,.1);
 }
 nav a{
 padding:15px;
+cursor:pointer;
+font-weight:500;
 text-decoration:none;
 color:#333;
-font-weight:500;
-cursor:pointer;
 }
 nav a:hover{color:#00c9a7}
 
@@ -85,26 +83,17 @@ cursor:pointer;
 
 .btn-wa{background:#25D366}
 
-.marquee{
-background:#fff;
-padding:10px;
-border-top:2px solid #00c9a7;
-border-bottom:2px solid #00c9a7;
-font-weight:bold;
-color:#d32f2f;
-}
-
 .watermark{
 position:fixed;
 top:50%;
 left:50%;
 transform:translate(-50%,-50%);
-font-size:45px;
-font-weight:900;
+font-size:40px;
 color:rgba(0,0,0,0.06);
-z-index:0;
-pointer-events:none;
+font-weight:900;
 text-align:center;
+pointer-events:none;
+z-index:0;
 }
 
 .owner{
@@ -113,7 +102,7 @@ bottom:10px;
 right:10px;
 background:linear-gradient(135deg,#00695c,#00c9a7);
 color:#fff;
-padding:10px 12px;
+padding:10px;
 border-radius:10px;
 font-size:12px;
 font-weight:bold;
@@ -141,23 +130,17 @@ TEAM : Ep. Gulo • W. Daeli • B. Gulo
 
 <!-- OWNER -->
 <div class="owner">
-👥 Team : Ep. Gulo, W. Daeli, B. Gulo
+Team : Ep. Gulo, W. Daeli, B. Gulo
 </div>
 
 <header>
 <h1>Apa Cari Nias Barat</h1>
-<p>Marketplace UMKM & Layanan Digital</p>
+<p>Platform UMKM & Layanan Digital</p>
 </header>
 
-<div class="marquee">
-<marquee>
-⚠️ WEBSITE DEMO / DRAF PEMIKIRAN ⚠️
-</marquee>
-</div>
-
-<!-- NAVBAR -->
+<!-- NAV -->
 <nav>
-<a onclick="scrollToSection('beranda');tampilMotivasi()">Beranda</a>
+<a onclick="scrollToSection('beranda');motivasi()">Beranda</a>
 <a onclick="scrollToSection('profil')">Profil</a>
 <a onclick="scrollToSection('layanan')">Layanan</a>
 <a onclick="scrollToSection('booking')">Booking</a>
@@ -167,23 +150,22 @@ TEAM : Ep. Gulo • W. Daeli • B. Gulo
 
 <!-- BERANDA -->
 <section id="beranda">
-
 <div class="card">
 <h2>Selamat Datang</h2>
-<p>Platform digital UMKM & layanan Nias Barat.</p>
+<p>Platform digital UMKM Nias Barat</p>
 </div>
 
 <div class="card" id="motivasiBox">
 Klik Beranda untuk motivasi 🚀
 </div>
-
 </section>
 
 <!-- PROFIL -->
 <section id="profil">
+
 <div class="card">
 <h2>Profil Aplikasi</h2>
-<p>Apa Cari Nias Barat adalah platform layanan lokal.</p>
+<p>Apa Cari Nias Barat adalah platform layanan digital UMKM.</p>
 
 <h3>Team Support</h3>
 <p style="font-weight:bold;">
@@ -191,21 +173,39 @@ S. Gulo (Coffee Aekhula)<br>
 S.P. Gulo (Nahada Cafe)
 </p>
 </div>
+
+<div class="card">
+<h2>🛰️ Satelit Nias Barat</h2>
+
+<iframe 
+width="100%" 
+height="300"
+style="border-radius:15px;border:0;"
+loading="lazy"
+allowfullscreen
+src="https://www.google.com/maps?q=Nias%20Barat&output=embed&t=k">
+</iframe>
+
+</div>
+
 </section>
 
 <!-- LAYANAN -->
 <section id="layanan">
 
 <div class="grid">
-<div class="item" onclick="pilihKategori('Travel')">🚗 Travel</div>
-<div class="item" onclick="pilihKategori('Hotel')">🏨 Hotel</div>
-<div class="item" onclick="pilihKategori('Salon')">💇 Salon</div>
-<div class="item" onclick="pilihKategori('KonsultasiBisnis')">💼 Bisnis</div>
-<div class="item" onclick="pilihKategori('Perabot')">🪑 Perabot</div>
-<div class="item" onclick="pilihKategori('RumahMakan')">🍛 Makan</div>
-<div class="item" onclick="pilihKategori('CafeResto')">☕ Cafe</div>
-<div class="item" onclick="pilihKategori('SnackMinuman')">🥤 Snack</div>
-<div class="item" onclick="pilihKategori('TeknisiService')">🔧 Service</div>
+
+<div class="item" onclick="menu('Travel')">🚗 Travel</div>
+<div class="item" onclick="menu('Hotel')">🏨 Hotel</div>
+<div class="item" onclick="menu('Salon')">💇 Salon</div>
+<div class="item" onclick="menu('Bisnis')">💼 Bisnis</div>
+<div class="item" onclick="menu('Perabot')">🪑 Perabot</div>
+<div class="item" onclick="menu('Makan')">🍛 Makan</div>
+<div class="item" onclick="menu('Cafe')">☕ Cafe</div>
+<div class="item" onclick="menu('Snack')">🥤 Snack</div>
+<div class="item" onclick="menu('Teknisi')">🔧 Teknisi</div>
+<div class="item" onclick="menu('TourGuide')">🗺️ Tour Guide</div>
+
 </div>
 
 <div id="sub"></div>
@@ -216,14 +216,14 @@ S.P. Gulo (Nahada Cafe)
 <section id="booking">
 
 <div class="card">
-<h2>Booking WhatsApp</h2>
+<h2>Booking WA</h2>
 
 <input id="nama" placeholder="Nama">
 <input id="layananInput" placeholder="Layanan">
 <input id="hargaInput" placeholder="Harga">
 <input id="tanggal" type="date">
 
-<button class="btn btn-wa" onclick="bookingWA()">Kirim Booking</button>
+<button class="btn btn-wa" onclick="booking()">Kirim</button>
 </div>
 
 </section>
@@ -234,25 +234,23 @@ S.P. Gulo (Nahada Cafe)
 <div class="card">
 <h2>🌐 Sosial</h2>
 
-<div class="card">
-<button class="btn" onclick="tampilSumbangan('panti')">🏠 Panti Asuhan</button><br><br>
-<button class="btn" onclick="tampilSumbangan('keluarga')">👨‍👩‍👧 Keluarga Tidak Mampu</button>
+<button class="btn" onclick="donasi('panti')">Panti Asuhan</button><br><br>
+<button class="btn" onclick="donasi('keluarga')">Keluarga Tidak Mampu</button>
 
-<div id="sumbanganBox"></div>
-</div>
+<div id="sosialBox"></div>
 
 </div>
 
 </section>
 
-<!-- INFO PENTING -->
+<!-- INFO -->
 <section id="info">
 
 <div class="card">
 <h2>📌 Info Penting</h2>
 
-<button class="btn" onclick="tampilInfo('beasiswa')">🎓 Beasiswa</button><br><br>
-<button class="btn" onclick="tampilInfo('niasbarat')">📍 Nias Barat</button>
+<button class="btn" onclick="info('beasiswa')">Beasiswa</button><br><br>
+<button class="btn" onclick="info('nias')">Nias Barat</button>
 
 <div id="infoBox"></div>
 
@@ -262,21 +260,17 @@ S.P. Gulo (Nahada Cafe)
 
 <script>
 
-const ADMIN_WA="6281392197552";
+const WA="6281392197552";
 
 /* MOTIVASI */
-const motivasi=[
-"🔥 Usaha kecil hari ini sukses besar nanti",
-"💡 Jangan takut gagal",
-"🚀 Konsisten lebih penting",
-"💰 Rezeki tidak tertukar",
-"🏆 Jangan menyerah",
-"📈 Hari ini berjuang besok sukses"
+function motivasi(){
+const m=[
+"🔥 Jangan menyerah hari ini",
+"🚀 Sukses butuh proses",
+"💡 Ide kecil bisa besar",
+"🏆 Konsistensi kunci sukses"
 ];
-
-function tampilMotivasi(){
-let m=motivasi[Math.floor(Math.random()*motivasi.length)];
-document.getElementById("motivasiBox").innerText=m;
+document.getElementById("motivasiBox").innerText=m[Math.floor(Math.random()*m.length)];
 }
 
 /* SCROLL */
@@ -284,62 +278,39 @@ function scrollToSection(id){
 document.getElementById(id).scrollIntoView({behavior:"smooth"});
 }
 
-/* BOOKING */
-function bookingWA(){
-let n=document.getElementById("nama").value;
-let l=document.getElementById("layananInput").value;
-let h=document.getElementById("hargaInput").value;
-let t=document.getElementById("tanggal").value;
-
-if(!n||!l||!h){alert("Lengkapi!");return;}
-
-let msg="BOOKING\n"+n+"\n"+l+"\nRp "+h+"\n"+t;
-
-window.open("https://wa.me/"+ADMIN_WA+"?text="+encodeURIComponent(msg));
-}
-
-/* CHAT */
-function chat(wa,p){
-window.open("https://wa.me/"+wa+"?text="+encodeURIComponent(p));
-}
-
-/* FILL */
-function bookingFill(n,h){
-document.getElementById("layananInput").value=n;
-document.getElementById("hargaInput").value=h;
-scrollToSection("booking");
-}
-
-/* DATA */
-const layanan={
-Travel:[{nama:"Avanza Travel",harga:150000,wa:"628111111111"}],
+/* MENU DATA */
+const data={
+Travel:[{nama:"Avanza Travel",harga:150000}],
 Hotel:[{nama:"Hotel RPJ",harga:250000,status:"Tersedia"}],
-Salon:[{nama:"Salon Beauty",harga:50000}],
-KonsultasiBisnis:[{nama:"Konsultasi UMKM",harga:100000}],
+Salon:[{nama:"Salon Cantik",harga:50000}],
+Bisnis:[{nama:"Konsultasi UMKM",harga:100000}],
 Perabot:[{nama:"Sofa Set",harga:2500000}],
-RumahMakan:[{nama:"RM Padang",harga:25000}],
-CafeResto:[{nama:"Cafe Aekhula",harga:15000}],
-SnackMinuman:[{nama:"Es Teh",harga:5000}],
-TeknisiService:[{nama:"Service TV",harga:75000},{nama:"Service HP",harga:50000}]
+Makan:[{nama:"RM Padang",harga:25000}],
+Cafe:[{nama:"Cafe Aekhula",harga:15000}],
+Snack:[{nama:"Es Teh",harga:5000}],
+Teknisi:[
+{nama:"Service TV",harga:75000},
+{nama:"Service Laptop",harga:90000},
+{nama:"Service Mobil",harga:200000}
+],
+TourGuide:[
+{nama:"Wisata A - Pantai",harga:0},
+{nama:"Wisata B - Air Terjun",harga:0},
+{nama:"Wisata C - Bukit",harga:0},
+{nama:"Wisata D - Desa",harga:0}
+]
 };
 
-function pilihKategori(k){
-
-if(!layanan[k])return;
-
+/* MENU */
+function menu(k){
 let html="<h3>"+k+"</h3>";
 
-layanan[k].forEach(i=>{
+data[k].forEach(i=>{
 html+=`
 <div class="card">
 <b>${i.nama}</b><br>
 💰 Rp ${i.harga}<br>
-
-${i.status?i.status+"<br>":""}
-
-${i.wa?`<button class="btn btn-wa" onclick="chat('${i.wa}','${i.nama}')">CHAT</button>`:""}
-
-<button class="btn" onclick="bookingFill('${i.nama}',${i.harga})">BOOK</button>
+<button class="btn" onclick="fill('${i.nama}',${i.harga})">BOOK</button>
 </div>
 `;
 });
@@ -347,28 +318,41 @@ ${i.wa?`<button class="btn btn-wa" onclick="chat('${i.wa}','${i.nama}')">CHAT</b
 document.getElementById("sub").innerHTML=html;
 }
 
-/* SOSIAL */
-function tampilSumbangan(t){
-let html="";
-if(t=="panti"){
-html=`<div class="card">🏠 Donasi Panti Asuhan<br><button class="btn btn-wa" onclick="window.open('https://wa.me/'+ADMIN_WA+'?text=Donasi Panti')">Donasi</button></div>`;
+/* FILL */
+function fill(n,h){
+document.getElementById("layananInput").value=n;
+document.getElementById("hargaInput").value=h;
+scrollToSection("booking");
 }
-if(t=="keluarga"){
-html=`<div class="card">👨‍👩‍👧 Donasi Keluarga<br><button class="btn btn-wa" onclick="window.open('https://wa.me/'+ADMIN_WA+'?text=Donasi Keluarga')">Donasi</button></div>`;
+
+/* BOOKING */
+function booking(){
+let n=document.getElementById("nama").value;
+let l=document.getElementById("layananInput").value;
+let h=document.getElementById("hargaInput").value;
+let t=document.getElementById("tanggal").value;
+
+let msg="BOOKING\n"+n+"\n"+l+"\nRp "+h+"\n"+t;
+
+window.open("https://wa.me/"+WA+"?text="+encodeURIComponent(msg));
 }
-document.getElementById("sumbanganBox").innerHTML=html;
+
+/* DONASI */
+function donasi(t){
+let msg=t=="panti"?"Donasi Panti":"Donasi Keluarga";
+window.open("https://wa.me/"+WA+"?text="+msg);
 }
 
 /* INFO */
-function tampilInfo(t){
+function info(t){
 let html="";
 if(t=="beasiswa"){
-html=`<div class="card">🎓 Beasiswa Nias Barat<br><button class="btn btn-wa" onclick="window.open('https://wa.me/'+ADMIN_WA+'?text=Info Beasiswa')">Hubungi</button></div>`;
+html="Beasiswa Nias Barat tersedia untuk pelajar & mahasiswa";
 }
-if(t=="niasbarat"){
-html=`<div class="card">📍 Informasi Nias Barat<br><button class="btn btn-wa" onclick="window.open('https://wa.me/'+ADMIN_WA+'?text=Info Nias Barat')">Hubungi</button></div>`;
+if(t=="nias"){
+html="Informasi resmi wilayah Nias Barat";
 }
-document.getElementById("infoBox").innerHTML=html;
+document.getElementById("infoBox").innerHTML="<div class='card'>"+html+"</div>";
 }
 
 </script>
