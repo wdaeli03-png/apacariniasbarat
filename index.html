@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Apa Cari Nias Barat</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+body{margin:0;font-family:Poppins;background:#f4f7fa}
+header{
+background:linear-gradient(135deg,#00695c,#00c9a7);
+color:#fff;
+text-align:center;
+padding:25px;
+}
+
+nav{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+background:#fff;
+box-shadow:0 2px 10px rgba(0,0,0,.1);
+}
+
+nav a{
+padding:15px;
+text-decoration:none;
+color:#333;
+font-weight:500;
+}
+
+nav a:hover{color:#00c9a7}
+
+section{padding:20px}
+
+.card{
+background:#fff;
+padding:15px;
+border-radius:15px;
+margin:10px 0;
+box-shadow:0 4px 10px rgba(0,0,0,.08);
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+gap:10px;
+}
+
+.item{
+background:#fff;
+padding:15px;
+border-radius:15px;
+text-align:center;
+cursor:pointer;
+box-shadow:0 3px 8px rgba(0,0,0,.1);
+}
+
+.item:hover{
+background:#00c9a7;
+color:#fff;
+}
+
+input{
+width:100%;
+padding:10px;
+margin:5px 0;
+border-radius:10px;
+border:1px solid #ccc;
+}
+
+.btn{
+width:100%;
+padding:10px;
+border:none;
+border-radius:10px;
+background:#00c9a7;
+color:#fff;
+cursor:pointer;
+}
+
+.btn-wa{
+background:#25D366;
+}
+</style>
+
+<script>
+
+const ADMIN_WA="6281392197552";
+
+/* ================= BOOKING WA ================= */
+function bookingWA(){
+
+let nama=document.getElementById("nama").value;
+let layanan=document.getElementById("layananInput").value;
+let harga=document.getElementById("hargaInput").value;
+let tanggal=document.getElementById("tanggal").value;
+
+if(!nama||!layanan||!harga){
+alert("Lengkapi data dulu!");
+return;
+}
+
+let msg=
+"📦 BOOKING APA CARI NIAS BARAT\n\n"+
+"👤 Nama: "+nama+"\n"+
+"🛎️ Layanan: "+layanan+"\n"+
+"💰 Harga: Rp "+harga+"\n"+
+"📅 Tanggal: "+tanggal;
+
+window.open("https://wa.me/"+ADMIN_WA+"?text="+encodeURIComponent(msg));
+}
+
+/* ================= CHAT WA ================= */
+function chat(wa,produk){
+window.open("https://wa.me/"+wa+"?text="+encodeURIComponent("Saya tertarik "+produk));
+}
+
+/* ================= FILL BOOKING ================= */
+function bookingFill(nama,harga){
+document.getElementById("layananInput").value=nama;
+document.getElementById("hargaInput").value=harga;
+document.getElementById("booking").scrollIntoView({behavior:"smooth"});
+}
+
+/* ================= DATA LAYANAN ================= */
+const layanan={
+
+Travel:[
+{nama:"Avanza",harga:150000,wa:"628111111111"},
+{nama:"Innova",harga:250000,wa:"628111111111"}
+],
+
+Hotel:[
+{nama:"Hotel RPJ",harga:250000},
+{nama:"Hotel Tokosa",harga:300000}
+],
+
+Pelaminan:[
+{nama:"Pelaminan Wedding",harga:3000000},
+{nama:"Pelaminan Duka",harga:1000000}
+],
+
+SoundSystem:[
+{nama:"Sound Hajatan",harga:500000},
+{nama:"Sound Event Besar",harga:1500000}
+],
+
+Teknisi:[
+{nama:"Service HP",harga:50000},
+{nama:"Service Laptop",harga:100000}
+],
+
+TokoUD:[
+{nama:"Toko Sembako",harga:50000},
+{nama:"UD Bangunan",harga:100000}
+]
+
+};
+
+/* ================= PILIH KATEGORI ================= */
+function pilihKategori(k){
+
+let html=`<h3>${k}</h3>`;
+
+layanan[k].forEach(i=>{
+html+=`
+<div class="card">
+<b>${i.nama}</b><br>
+💰 Rp ${i.harga}<br>
+
+${i.wa?`<button class="btn btn-wa" onclick="chat('${i.wa}','${i.nama}')">CHAT WA</button>`:''}
+
+<button class="btn" onclick="bookingFill('${i.nama}',${i.harga})">BOOKING</button>
+</div>
+`;
+});
+
+document.getElementById("sub").innerHTML=html;
+}
+
+</script>
+</head>
+
+<body>
+
+<header>
+<h1>Apa Cari Nias Barat</h1>
+<p>Marketplace UMKM & Layanan Digital</p>
+</header>
+
+<!-- NAVBAR -->
+<nav>
+<a href="#beranda">Beranda</a>
+<a href="#layanan">Layanan</a>
+<a href="#booking">Booking</a>
+<a href="#profil">Profil</a>
+</nav>
+
+<!-- BERANDA -->
+<section id="beranda">
+<div class="card">
+
+<h2>Apa Cari Nias Barat</h2>
+
+<p>
+<b>Apa Cari Nias Barat</b> adalah sebuah platform digital yang hadir untuk menghubungkan masyarakat dengan berbagai layanan dan usaha yang ada di wilayah Nias Barat dalam satu sistem yang mudah, cepat, dan praktis. Melalui website ini, pengguna dapat mencari berbagai kebutuhan seperti layanan travel, penginapan atau hotel, UMKM lokal, hingga berbagai jasa dan usaha lainnya tanpa harus mencari secara manual ke banyak tempat.
+</p>
+
+<p>
+Dengan konsep satu pintu layanan digital, Apa Cari Nias Barat membantu masyarakat mendapatkan informasi yang lebih cepat, akurat, dan langsung terhubung ke pemilik usaha melalui sistem pemesanan, seperti WhatsApp atau fitur booking yang tersedia.
+</p>
+
+<h3>🚀 Manfaat dan Tujuan</h3>
+<ul>
+<li>Mempermudah masyarakat dalam menemukan layanan di Nias Barat</li>
+<li>Membantu pelaku usaha agar lebih dikenal</li>
+<li>Menyatukan semua layanan dalam satu platform</li>
+<li>Meningkatkan efisiensi pemesanan</li>
+<li>Mendorong transformasi digital daerah</li>
+</ul>
+
+<h3>💰 Keuntungan Pelaku Usaha</h3>
+<p>
+Usaha tampil online 24 jam, lebih mudah ditemukan, meningkatkan pelanggan baru, serta meningkatkan kepercayaan dan citra profesional tanpa biaya promosi besar.
+</p>
+
+</div>
+</section>
+
+<!-- PROFIL -->
+<section id="profil">
+<div class="card">
+
+<h2>Profil Aplikasi</h2>
+
+<p>
+Aplikasi ini dibuat untuk menghubungkan masyarakat dengan layanan lokal Nias Barat seperti travel, hotel, UMKM, pelaminan, dan jasa lainnya dalam satu platform digital.
+</p>
+
+<ul>
+<li>🚗 Travel & Transportasi</li>
+<li>🏨 Hotel & Penginapan</li>
+<li>💒 Pelaminan & Event</li>
+<li>🔧 Jasa Teknisi</li>
+<li>🏪 UMKM Lokal</li>
+</ul>
+
+<p>
+Tujuan utama adalah mendigitalisasi UMKM agar lebih maju dan mudah diakses masyarakat.
+</p>
+
+</div>
+</section>
+
+<!-- LAYANAN -->
+<section id="layanan">
+
+<div class="grid">
+
+<div class="item" onclick="pilihKategori('Travel')">🚗 Travel</div>
+<div class="item" onclick="pilihKategori('Hotel')">🏨 Hotel</div>
+<div class="item" onclick="pilihKategori('Pelaminan')">💒 Pelaminan</div>
+<div class="item" onclick="pilihKategori('SoundSystem')">🔊 Sound</div>
+<div class="item" onclick="pilihKategori('Teknisi')">🔧 Teknisi</div>
+<div class="item" onclick="pilihKategori('TokoUD')">🏪 Toko</div>
+
+</div>
+
+<div id="sub"></div>
+
+</section>
+
+<!-- BOOKING -->
+<section id="booking">
+
+<div class="card">
+
+<h2>Booking WhatsApp</h2>
+
+<input id="nama" placeholder="Nama">
+<input id="layananInput" placeholder="Layanan">
+<input id="hargaInput" placeholder="Harga">
+<input id="tanggal" type="date">
+
+<button class="btn btn-wa" onclick="bookingWA()">Kirim Booking</button>
+
+</div>
+
+</section>
+
+</body>
+</html>
