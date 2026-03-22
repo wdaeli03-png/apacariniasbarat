@@ -9,6 +9,8 @@
 
 <style>
 body{margin:0;font-family:Poppins;background:#f4f7fa}
+
+/* HEADER */
 header{
 background:linear-gradient(135deg,#00695c,#00c9a7);
 color:#fff;
@@ -16,6 +18,7 @@ text-align:center;
 padding:25px;
 }
 
+/* NAV */
 nav{
 display:flex;
 flex-wrap:wrap;
@@ -23,18 +26,16 @@ justify-content:center;
 background:#fff;
 box-shadow:0 2px 10px rgba(0,0,0,.1);
 }
-
 nav a{
 padding:15px;
 text-decoration:none;
 color:#333;
 font-weight:500;
 }
-
 nav a:hover{color:#00c9a7}
 
+/* CARD */
 section{padding:20px}
-
 .card{
 background:#fff;
 padding:15px;
@@ -43,12 +44,12 @@ margin:10px 0;
 box-shadow:0 4px 10px rgba(0,0,0,.08);
 }
 
+/* GRID */
 .grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
 gap:10px;
 }
-
 .item{
 background:#fff;
 padding:15px;
@@ -57,12 +58,9 @@ text-align:center;
 cursor:pointer;
 box-shadow:0 3px 8px rgba(0,0,0,.1);
 }
+.item:hover{background:#00c9a7;color:#fff}
 
-.item:hover{
-background:#00c9a7;
-color:#fff;
-}
-
+/* INPUT */
 input{
 width:100%;
 padding:10px;
@@ -71,6 +69,7 @@ border-radius:10px;
 border:1px solid #ccc;
 }
 
+/* BUTTON */
 .btn{
 width:100%;
 padding:10px;
@@ -80,153 +79,90 @@ background:#00c9a7;
 color:#fff;
 cursor:pointer;
 }
+.btn-wa{background:#25D366}
 
-.btn-wa{
-background:#25D366;
+/* MARQUEE */
+.marquee{
+background:#fff;
+padding:10px;
+border-top:2px solid #00c9a7;
+border-bottom:2px solid #00c9a7;
+font-weight:bold;
+color:#d32f2f;
 }
+
+/* WATERMARK TENGAH */
+.watermark{
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+font-size:45px;
+font-weight:900;
+color:rgba(0,0,0,0.06);
+z-index:0;
+pointer-events:none;
+text-align:center;
+}
+
+/* OWNER */
+.owner{
+position:fixed;
+bottom:10px;
+right:10px;
+background:linear-gradient(135deg,#00695c,#00c9a7);
+color:#fff;
+padding:10px 12px;
+border-radius:10px;
+font-size:12px;
+font-weight:bold;
+z-index:9999;
+}
+
 </style>
-
-<script>
-
-const ADMIN_WA="6281392197552";
-
-/* ================= BOOKING WA ================= */
-function bookingWA(){
-
-let nama=document.getElementById("nama").value;
-let layanan=document.getElementById("layananInput").value;
-let harga=document.getElementById("hargaInput").value;
-let tanggal=document.getElementById("tanggal").value;
-
-if(!nama||!layanan||!harga){
-alert("Lengkapi data dulu!");
-return;
-}
-
-let msg=
-"📦 BOOKING APA CARI NIAS BARAT\n\n"+
-"👤 Nama: "+nama+"\n"+
-"🛎️ Layanan: "+layanan+"\n"+
-"💰 Harga: Rp "+harga+"\n"+
-"📅 Tanggal: "+tanggal;
-
-window.open("https://wa.me/"+ADMIN_WA+"?text="+encodeURIComponent(msg));
-}
-
-/* ================= CHAT WA ================= */
-function chat(wa,produk){
-window.open("https://wa.me/"+wa+"?text="+encodeURIComponent("Saya tertarik "+produk));
-}
-
-/* ================= FILL BOOKING ================= */
-function bookingFill(nama,harga){
-document.getElementById("layananInput").value=nama;
-document.getElementById("hargaInput").value=harga;
-document.getElementById("booking").scrollIntoView({behavior:"smooth"});
-}
-
-/* ================= DATA LAYANAN ================= */
-const layanan={
-
-Travel:[
-{nama:"Avanza",harga:150000,wa:"628111111111"},
-{nama:"Innova",harga:250000,wa:"628111111111"}
-],
-
-Hotel:[
-{nama:"Hotel RPJ",harga:250000},
-{nama:"Hotel Tokosa",harga:300000}
-],
-
-Pelaminan:[
-{nama:"Pelaminan Wedding",harga:3000000},
-{nama:"Pelaminan Duka",harga:1000000}
-],
-
-SoundSystem:[
-{nama:"Sound Hajatan",harga:500000},
-{nama:"Sound Event Besar",harga:1500000}
-],
-
-Teknisi:[
-{nama:"Service HP",harga:50000},
-{nama:"Service Laptop",harga:100000}
-],
-
-TokoUD:[
-{nama:"Toko Sembako",harga:50000},
-{nama:"UD Bangunan",harga:100000}
-]
-
-};
-
-/* ================= PILIH KATEGORI ================= */
-function pilihKategori(k){
-
-let html=`<h3>${k}</h3>`;
-
-layanan[k].forEach(i=>{
-html+=`
-<div class="card">
-<b>${i.nama}</b><br>
-💰 Rp ${i.harga}<br>
-
-${i.wa?`<button class="btn btn-wa" onclick="chat('${i.wa}','${i.nama}')">CHAT WA</button>`:''}
-
-<button class="btn" onclick="bookingFill('${i.nama}',${i.harga})">BOOKING</button>
-</div>
-`;
-});
-
-document.getElementById("sub").innerHTML=html;
-}
-
-</script>
 </head>
 
 <body>
 
+<!-- WATERMARK -->
+<div class="watermark">
+Apa Cari Nias Barat<br>
+TEAM : Ep. Gulo • W. Daeli • B. Gulo
+</div>
+
+<!-- OWNER -->
+<div class="owner">
+👥 Team : Ep. Gulo, W. Daeli, B. Gulo
+</div>
+
+<!-- HEADER -->
 <header>
 <h1>Apa Cari Nias Barat</h1>
 <p>Marketplace UMKM & Layanan Digital</p>
 </header>
 
-<!-- NAVBAR -->
+<!-- MARQUEE -->
+<div class="marquee">
+<marquee>
+⚠️ Website ini hanya untuk DEMO / DRAF PEMIKIRAN, bukan untuk dibagikan ke umum ⚠️
+</marquee>
+</div>
+
+<!-- NAV -->
 <nav>
 <a href="#beranda">Beranda</a>
 <a href="#layanan">Layanan</a>
-<a href="#booking">Booking</a>
 <a href="#profil">Profil</a>
+<a href="#booking">Booking</a>
 </nav>
 
 <!-- BERANDA -->
 <section id="beranda">
 <div class="card">
-
-<h2>Apa Cari Nias Barat</h2>
-
+<h2>Selamat Datang</h2>
 <p>
-<b>Apa Cari Nias Barat</b> adalah sebuah platform digital yang hadir untuk menghubungkan masyarakat dengan berbagai layanan dan usaha yang ada di wilayah Nias Barat dalam satu sistem yang mudah, cepat, dan praktis. Melalui website ini, pengguna dapat mencari berbagai kebutuhan seperti layanan travel, penginapan atau hotel, UMKM lokal, hingga berbagai jasa dan usaha lainnya tanpa harus mencari secara manual ke banyak tempat.
+Platform digital untuk menghubungkan masyarakat Nias Barat dengan layanan UMKM, hotel, travel, salon, cafe, dan jasa lainnya.
 </p>
-
-<p>
-Dengan konsep satu pintu layanan digital, Apa Cari Nias Barat membantu masyarakat mendapatkan informasi yang lebih cepat, akurat, dan langsung terhubung ke pemilik usaha melalui sistem pemesanan, seperti WhatsApp atau fitur booking yang tersedia.
-</p>
-
-<h3>🚀 Manfaat dan Tujuan</h3>
-<ul>
-<li>Mempermudah masyarakat dalam menemukan layanan di Nias Barat</li>
-<li>Membantu pelaku usaha agar lebih dikenal</li>
-<li>Menyatukan semua layanan dalam satu platform</li>
-<li>Meningkatkan efisiensi pemesanan</li>
-<li>Mendorong transformasi digital daerah</li>
-</ul>
-
-<h3>💰 Keuntungan Pelaku Usaha</h3>
-<p>
-Usaha tampil online 24 jam, lebih mudah ditemukan, meningkatkan pelanggan baru, serta meningkatkan kepercayaan dan citra profesional tanpa biaya promosi besar.
-</p>
-
 </div>
 </section>
 
@@ -237,20 +173,23 @@ Usaha tampil online 24 jam, lebih mudah ditemukan, meningkatkan pelanggan baru, 
 <h2>Profil Aplikasi</h2>
 
 <p>
-Aplikasi ini dibuat untuk menghubungkan masyarakat dengan layanan lokal Nias Barat seperti travel, hotel, UMKM, pelaminan, dan jasa lainnya dalam satu platform digital.
+<b>Apa Cari Nias Barat</b> adalah platform digital yang menyatukan semua layanan lokal dalam satu sistem.
 </p>
 
+<h3>🚀 Tujuan</h3>
 <ul>
-<li>🚗 Travel & Transportasi</li>
-<li>🏨 Hotel & Penginapan</li>
-<li>💒 Pelaminan & Event</li>
-<li>🔧 Jasa Teknisi</li>
-<li>🏪 UMKM Lokal</li>
+<li>Mempermudah masyarakat mencari layanan</li>
+<li>Mendorong UMKM naik kelas digital</li>
+<li>Satu platform untuk semua kebutuhan</li>
 </ul>
 
-<p>
-Tujuan utama adalah mendigitalisasi UMKM agar lebih maju dan mudah diakses masyarakat.
+<h3>👥 Team Support</h3>
+<p style="font-weight:bold;">
+S. Gulo (Coffee Aekhula)<br>
+S.P. Gulo (Nahada Cafe)
 </p>
+
+<p><b>Status:</b> Masih tahap rancangan / demo</p>
 
 </div>
 </section>
@@ -262,10 +201,13 @@ Tujuan utama adalah mendigitalisasi UMKM agar lebih maju dan mudah diakses masya
 
 <div class="item" onclick="pilihKategori('Travel')">🚗 Travel</div>
 <div class="item" onclick="pilihKategori('Hotel')">🏨 Hotel</div>
-<div class="item" onclick="pilihKategori('Pelaminan')">💒 Pelaminan</div>
-<div class="item" onclick="pilihKategori('SoundSystem')">🔊 Sound</div>
-<div class="item" onclick="pilihKategori('Teknisi')">🔧 Teknisi</div>
-<div class="item" onclick="pilihKategori('TokoUD')">🏪 Toko</div>
+<div class="item" onclick="pilihKategori('Salon')">💇 Salon</div>
+<div class="item" onclick="pilihKategori('KonsultasiBisnis')">💼 Bisnis</div>
+<div class="item" onclick="pilihKategori('Perabot')">🪑 Perabot</div>
+<div class="item" onclick="pilihKategori('RumahMakan')">🍛 Makan</div>
+<div class="item" onclick="pilihKategori('CafeResto')">☕ Cafe</div>
+<div class="item" onclick="pilihKategori('SnackMinuman')">🥤 Snack</div>
+<div class="item" onclick="pilihKategori('TeknisiService')">🔧 Service</div>
 
 </div>
 
@@ -290,6 +232,112 @@ Tujuan utama adalah mendigitalisasi UMKM agar lebih maju dan mudah diakses masya
 </div>
 
 </section>
+
+<script>
+
+const ADMIN_WA="6281392197552";
+
+/* BOOKING */
+function bookingWA(){
+let nama=document.getElementById("nama").value;
+let layanan=document.getElementById("layananInput").value;
+let harga=document.getElementById("hargaInput").value;
+let tanggal=document.getElementById("tanggal").value;
+
+if(!nama||!layanan||!harga){
+alert("Lengkapi data!");
+return;
+}
+
+let msg=
+"📦 BOOKING APA CARI NIAS BARAT\n\n"+
+"👤 Nama: "+nama+"\n"+
+"🛎️ Layanan: "+layanan+"\n"+
+"💰 Harga: Rp "+harga+"\n"+
+"📅 Tanggal: "+tanggal;
+
+window.open("https://wa.me/"+ADMIN_WA+"?text="+encodeURIComponent(msg));
+}
+
+/* CHAT */
+function chat(wa,produk){
+window.open("https://wa.me/"+wa+"?text="+encodeURIComponent("Saya tertarik "+produk));
+}
+
+/* FILL */
+function bookingFill(nama,harga){
+document.getElementById("layananInput").value=nama;
+document.getElementById("hargaInput").value=harga;
+document.getElementById("booking").scrollIntoView({behavior:"smooth"});
+}
+
+/* DATA LAYANAN */
+const layanan={
+
+Travel:[{nama:"Avanza Travel",harga:150000,wa:"628111111111"}],
+
+Hotel:[
+{nama:"Hotel RPJ",harga:250000,status:"Tersedia",review:"⭐ 4.5"},
+{nama:"Hotel Tokosa",harga:300000,status:"Full",review:"⭐ 4.2"}
+],
+
+Salon:[
+{nama:"Salon Beauty",harga:50000},
+{nama:"Hair Spa",harga:80000}
+],
+
+KonsultasiBisnis:[
+{nama:"Konsultasi UMKM",harga:100000}
+],
+
+Perabot:[
+{nama:"Sofa Set",harga:2500000}
+],
+
+RumahMakan:[
+{nama:"RM Padang",harga:25000}
+],
+
+CafeResto:[
+{nama:"Cafe Aekhula",harga:15000}
+],
+
+SnackMinuman:[
+{nama:"Es Teh",harga:5000}
+],
+
+TeknisiService:[
+{nama:"Service TV",harga:75000},
+{nama:"Service Mobil",harga:200000},
+{nama:"Service HP",harga:50000}
+]
+
+};
+
+/* PILIH KATEGORI */
+function pilihKategori(k){
+
+let html=`<h3>${k}</h3>`;
+
+layanan[k].forEach(i=>{
+html+=`
+<div class="card">
+<b>${i.nama}</b><br>
+💰 Rp ${i.harga}<br>
+${i.status?`📦 ${i.status}<br>`:""}
+${i.review?`${i.review}<br>`:""}
+
+${i.wa?`<button class="btn btn-wa" onclick="chat('${i.wa}','${i.nama}')">CHAT WA</button>`:''}
+
+<button class="btn" onclick="bookingFill('${i.nama}',${i.harga})">BOOKING</button>
+</div>
+`;
+});
+
+document.getElementById("sub").innerHTML=html;
+}
+
+</script>
 
 </body>
 </html>
