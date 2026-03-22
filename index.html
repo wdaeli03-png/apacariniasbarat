@@ -8,43 +8,29 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
-body{
-margin:0;
-font-family:Poppins;
-background:#f4f7fa;
-}
+body{margin:0;font-family:Poppins;background:#f4f7fa}
 
 header{
 background:linear-gradient(135deg,#00695c,#00c9a7);
-color:#fff;
-text-align:center;
-padding:25px;
+color:#fff;text-align:center;padding:25px;
 }
 
 nav{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-background:#fff;
-box-shadow:0 2px 10px rgba(0,0,0,.1);
+display:flex;flex-wrap:wrap;justify-content:center;
+background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.1);
 }
+
 nav a{
-padding:15px;
-cursor:pointer;
-font-weight:500;
-text-decoration:none;
-color:#333;
+padding:15px;cursor:pointer;font-weight:500;
+text-decoration:none;color:#333;
 }
 nav a:hover{color:#00c9a7}
 
 section{padding:20px}
 
 .card{
-background:#fff;
-padding:15px;
-border-radius:15px;
-margin:10px 0;
-box-shadow:0 4px 10px rgba(0,0,0,.08);
+background:#fff;padding:15px;border-radius:15px;
+margin:10px 0;box-shadow:0 4px 10px rgba(0,0,0,.08);
 }
 
 .grid{
@@ -54,105 +40,54 @@ gap:10px;
 }
 
 .item{
-background:#fff;
-padding:15px;
-border-radius:15px;
-text-align:center;
-cursor:pointer;
+background:#fff;padding:15px;border-radius:15px;
+text-align:center;cursor:pointer;
 box-shadow:0 3px 8px rgba(0,0,0,.1);
 }
 .item:hover{background:#00c9a7;color:#fff}
 
 input{
-width:100%;
-padding:10px;
-margin:5px 0;
-border-radius:10px;
-border:1px solid #ccc;
+width:100%;padding:10px;margin:5px 0;
+border-radius:10px;border:1px solid #ccc;
 }
 
 .btn{
-width:100%;
-padding:10px;
-border:none;
-border-radius:10px;
-background:#00c9a7;
-color:#fff;
-cursor:pointer;
+width:100%;padding:10px;border:none;
+border-radius:10px;background:#00c9a7;
+color:#fff;cursor:pointer;
 }
 
 .btn-wa{background:#25D366}
 
-.watermark{
-position:fixed;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-font-size:40px;
-color:rgba(0,0,0,0.06);
-font-weight:900;
-text-align:center;
-pointer-events:none;
-z-index:0;
-}
-
-.owner{
-position:fixed;
-bottom:10px;
-right:10px;
-background:linear-gradient(135deg,#00695c,#00c9a7);
-color:#fff;
-padding:10px;
-border-radius:10px;
-font-size:12px;
-font-weight:bold;
-z-index:9999;
-}
-
-html{scroll-behavior:smooth;}
+html{scroll-behavior:smooth}
 
 #motivasiBox{
-text-align:center;
-font-weight:bold;
-color:#00695c;
-font-size:18px;
+text-align:center;font-weight:bold;
+color:#00695c;font-size:18px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- WATERMARK -->
-<div class="watermark">
-Apa Cari Nias Barat<br>
-TEAM : Ep. Gulo • W. Daeli • B. Gulo
-</div>
-
-<!-- OWNER -->
-<div class="owner">
-Team : Ep. Gulo, W. Daeli, B. Gulo
-</div>
-
 <header>
 <h1>Apa Cari Nias Barat</h1>
 <p>Platform UMKM & Layanan Digital</p>
 </header>
 
-<!-- NAV -->
 <nav>
 <a onclick="scrollToSection('beranda');motivasi()">Beranda</a>
 <a onclick="scrollToSection('profil')">Profil</a>
 <a onclick="scrollToSection('layanan')">Layanan</a>
 <a onclick="scrollToSection('booking')">Booking</a>
-<a onclick="scrollToSection('sosial')">Sosial</a>
-<a onclick="scrollToSection('info')">Info Penting</a>
+<a onclick="scrollToSection('info')">Info</a>
 </nav>
 
 <!-- BERANDA -->
 <section id="beranda">
 <div class="card">
-<h2>Selamat Datang</h2>
-<p>Platform digital UMKM Nias Barat</p>
+<h2>YA'AHOWU NIAS BARAT</h2>
+<p>Ide,Gagasan Anak Muda Nias Barat</p>
 </div>
 
 <div class="card" id="motivasiBox">
@@ -162,32 +97,10 @@ Klik Beranda untuk motivasi 🚀
 
 <!-- PROFIL -->
 <section id="profil">
-
 <div class="card">
 <h2>Profil Aplikasi</h2>
 <p>Apa Cari Nias Barat adalah platform layanan digital UMKM.</p>
-
-<h3>Team Support</h3>
-<p style="font-weight:bold;">
-S. Gulo (Coffee Aekhula)<br>
-S.P. Gulo (Nahada Cafe)
-</p>
 </div>
-
-<div class="card">
-<h2>🛰️ Satelit Nias Barat</h2>
-
-<iframe 
-width="100%" 
-height="300"
-style="border-radius:15px;border:0;"
-loading="lazy"
-allowfullscreen
-src="https://www.google.com/maps?q=Nias%20Barat&output=embed&t=k">
-</iframe>
-
-</div>
-
 </section>
 
 <!-- LAYANAN -->
@@ -205,6 +118,11 @@ src="https://www.google.com/maps?q=Nias%20Barat&output=embed&t=k">
 <div class="item" onclick="menu('Snack')">🥤 Snack</div>
 <div class="item" onclick="menu('Teknisi')">🔧 Teknisi</div>
 <div class="item" onclick="menu('TourGuide')">🗺️ Tour Guide</div>
+
+<div class="item" onclick="menu('Loker')">💼 Loker</div>
+<div class="item" onclick="menu('Kursus')">📚 Kursus/Bimbel</div>
+<div class="item" onclick="menu('Olshop')">🛍️ Olshop</div>
+<div class="item" onclick="menu('Komplit')">💳 Komplit Pesanan</div>
 
 </div>
 
@@ -228,26 +146,10 @@ src="https://www.google.com/maps?q=Nias%20Barat&output=embed&t=k">
 
 </section>
 
-<!-- SOSIAL -->
-<section id="sosial">
-
-<div class="card">
-<h2>🌐 Sosial</h2>
-
-<button class="btn" onclick="donasi('panti')">Panti Asuhan</button><br><br>
-<button class="btn" onclick="donasi('keluarga')">Keluarga Tidak Mampu</button>
-
-<div id="sosialBox"></div>
-
-</div>
-
-</section>
-
 <!-- INFO -->
 <section id="info">
-
 <div class="card">
-<h2>📌 Info Penting</h2>
+<h2>📌 Info</h2>
 
 <button class="btn" onclick="info('beasiswa')">Beasiswa</button><br><br>
 <button class="btn" onclick="info('nias')">Nias Barat</button>
@@ -255,33 +157,17 @@ src="https://www.google.com/maps?q=Nias%20Barat&output=embed&t=k">
 <div id="infoBox"></div>
 
 </div>
-
 </section>
 
 <script>
 
 const WA="6281392197552";
 
-/* MOTIVASI */
-function motivasi(){
-const m=[
-"🔥 Jangan menyerah hari ini",
-"🚀 Sukses butuh proses",
-"💡 Ide kecil bisa besar",
-"🏆 Konsistensi kunci sukses"
-];
-document.getElementById("motivasiBox").innerText=m[Math.floor(Math.random()*m.length)];
-}
-
-/* SCROLL */
-function scrollToSection(id){
-document.getElementById(id).scrollIntoView({behavior:"smooth"});
-}
-
-/* MENU DATA */
+/* DATA */
 const data={
+
 Travel:[{nama:"Avanza Travel",harga:150000}],
-Hotel:[{nama:"Hotel RPJ",harga:250000,status:"Tersedia"}],
+Hotel:[{nama:"Hotel RPJ",harga:250000}],
 Salon:[{nama:"Salon Cantik",harga:50000}],
 Bisnis:[{nama:"Konsultasi UMKM",harga:100000}],
 Perabot:[{nama:"Sofa Set",harga:2500000}],
@@ -294,11 +180,51 @@ Teknisi:[
 {nama:"Service Mobil",harga:200000}
 ],
 TourGuide:[
-{nama:"Wisata A - Pantai",harga:0},
-{nama:"Wisata B - Air Terjun",harga:0},
-{nama:"Wisata C - Bukit",harga:0},
-{nama:"Wisata D - Desa",harga:0}
+{nama:"Pantai Nias",harga:0},
+{nama:"Air Terjun",harga:0},
+{nama:"Bukit Wisata",harga:0},
+{nama:"Desa Budaya",harga:0}
+],
+
+/* LOKER */
+Loker:[
+{nama:"Admin Toko Online",harga:0},
+{nama:"Driver Travel",harga:0},
+{nama:"Karyawan Cafe",harga:0},
+{nama:"Marketing UMKM",harga:0},
+{nama:"Tour Guide Wisata",harga:0},
+{nama:"Kasir Minimarket",harga:0},
+{nama:"Security / Satpam",harga:0},
+{nama:"Pembantu Rumah Tangga",harga:0}
+],
+
+/* KURSUS */
+Kursus:[
+{nama:"Bimbel SD",harga:150000},
+{nama:"Bimbel SMP",harga:200000},
+{nama:"Bimbel SMA/UTBK",harga:300000},
+{nama:"Kursus Komputer",harga:175000},
+{nama:"Microsoft Office",harga:150000},
+{nama:"Desain Canva",harga:100000},
+{nama:"Bahasa Inggris",harga:250000},
+{nama:"Digital Marketing",harga:300000}
+],
+
+/* OLSHOP */
+Olshop:[
+{nama:"Olshop A - Wanita",harga:50000},
+{nama:"Olshop B - Pria",harga:60000},
+{nama:"Olshop C - Sepatu",harga:75000},
+{nama:"Olshop D - Aksesoris",harga:30000},
+{nama:"Olshop E - Kosmetik",harga:45000},
+{nama:"Olshop F - UMKM Lokal",harga:25000}
+],
+
+/* KOMPLIT */
+Komplit:[
+{nama:"Paket Travel + Pelaminan + Sound System",harga:0}
 ]
+
 };
 
 /* MENU */
@@ -310,7 +236,9 @@ html+=`
 <div class="card">
 <b>${i.nama}</b><br>
 💰 Rp ${i.harga}<br>
-<button class="btn" onclick="fill('${i.nama}',${i.harga})">BOOK</button>
+<button class="btn" onclick="fill('${i.nama}',${i.harga})">
+BOOK / LAMAR
+</button>
 </div>
 `;
 });
@@ -318,7 +246,6 @@ html+=`
 document.getElementById("sub").innerHTML=html;
 }
 
-/* FILL */
 function fill(n,h){
 document.getElementById("layananInput").value=n;
 document.getElementById("hargaInput").value=h;
@@ -332,27 +259,41 @@ let l=document.getElementById("layananInput").value;
 let h=document.getElementById("hargaInput").value;
 let t=document.getElementById("tanggal").value;
 
-let msg="BOOKING\n"+n+"\n"+l+"\nRp "+h+"\n"+t;
+let msg=
+"REQUEST PESANAN\n"+
+"Nama: "+n+"\n"+
+"Layanan: "+l+"\n"+
+"Harga: "+h+"\n"+
+"Tanggal: "+t;
 
 window.open("https://wa.me/"+WA+"?text="+encodeURIComponent(msg));
-}
-
-/* DONASI */
-function donasi(t){
-let msg=t=="panti"?"Donasi Panti":"Donasi Keluarga";
-window.open("https://wa.me/"+WA+"?text="+msg);
 }
 
 /* INFO */
 function info(t){
 let html="";
-if(t=="beasiswa"){
-html="Beasiswa Nias Barat tersedia untuk pelajar & mahasiswa";
+if(t=="beasiswa") html="Beasiswa tersedia untuk pelajar Nias Barat";
+if(t=="nias") html="Informasi resmi Nias Barat";
+
+document.getElementById("infoBox").innerHTML=
+"<div class='card'>"+html+"</div>";
 }
-if(t=="nias"){
-html="Informasi resmi wilayah Nias Barat";
+
+/* MOTIVASI */
+function motivasi(){
+const m=[
+"🔥 Jangan menyerah",
+"🚀 Sukses butuh proses",
+"💡 Ide kecil bisa besar",
+"🏆 Konsistensi kunci sukses"
+];
+document.getElementById("motivasiBox").innerText=
+m[Math.floor(Math.random()*m.length)];
 }
-document.getElementById("infoBox").innerHTML="<div class='card'>"+html+"</div>";
+
+/* SCROLL */
+function scrollToSection(id){
+document.getElementById(id).scrollIntoView({behavior:"smooth"});
 }
 
 </script>
