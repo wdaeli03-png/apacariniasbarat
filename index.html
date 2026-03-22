@@ -65,6 +65,14 @@ html{scroll-behavior:smooth}
 text-align:center;font-weight:bold;
 color:#00695c;font-size:18px;
 }
+
+/* TEKS BERJALAN */
+.marquee{
+background:#ffcc00;
+color:#000;
+padding:8px;
+font-weight:bold;
+}
 </style>
 </head>
 
@@ -74,6 +82,13 @@ color:#00695c;font-size:18px;
 <h1>Apa Cari Nias Barat</h1>
 <p>Platform UMKM & Layanan Digital</p>
 </header>
+
+<!-- TEKS BERJALAN -->
+<div class="marquee">
+<marquee>
+⚠️ Website ini hanya untuk Demo / Uji Coba, bukan untuk di share ke publik ⚠️
+</marquee>
+</div>
 
 <nav>
 <a onclick="scrollToSection('beranda');motivasi()">Beranda</a>
@@ -87,7 +102,7 @@ color:#00695c;font-size:18px;
 <section id="beranda">
 <div class="card">
 <h2>YA'AHOWU NIAS BARAT</h2>
-<p>Ide,Gagasan Anak Muda Nias Barat</p>
+<p>Ide, Gagasan Anak Muda Nias Barat</p>
 </div>
 
 <div class="card" id="motivasiBox">
@@ -97,10 +112,39 @@ Klik Beranda untuk motivasi 🚀
 
 <!-- PROFIL -->
 <section id="profil">
+
 <div class="card">
-<h2>Profil Aplikasi</h2>
-<p>Apa Cari Nias Barat adalah platform layanan digital UMKM.</p>
+<h2>📌 Apa Cari Nias Barat</h2>
+
+<p>
+Apa Cari Nias Barat adalah sebuah platform digital yang hadir untuk menghubungkan masyarakat dengan berbagai layanan dan usaha yang ada di wilayah Nias Barat dalam satu sistem yang mudah, cepat, dan praktis. Melalui website ini, pengguna dapat mencari berbagai kebutuhan seperti layanan travel, penginapan atau hotel, UMKM lokal, hingga berbagai jasa dan usaha lainnya tanpa harus mencari secara manual ke banyak tempat.
+</p>
+
+<p>
+Dengan konsep satu pintu layanan digital, website ini membantu masyarakat mendapatkan informasi lebih cepat dan langsung terhubung ke pemilik usaha melalui WhatsApp atau booking.
+</p>
+
+<h3>🚀 Manfaat dan Tujuan</h3>
+<ul>
+<li>Mempermudah masyarakat dalam menemukan layanan di Nias Barat</li>
+<li>Membantu pelaku usaha agar lebih dikenal</li>
+<li>Menyatukan layanan dalam satu platform digital</li>
+<li>Meningkatkan efisiensi transaksi</li>
+</ul>
+
+<h3>💰 Keuntungan Pelaku Usaha</h3>
+<p>
+Usaha tampil online 24 jam dan langsung terhubung ke pelanggan.
+</p>
 </div>
+
+<!-- TEAM SUPPORT -->
+<div class="card">
+<h2>👨‍💻 Team Support</h2>
+<p><b>S. Gulo (Coffee Aekhula & Damai Garage Service)</b></p>
+<p><b>S.P Gulo (Nahada Cafe)</b></p>
+</div>
+
 </section>
 
 <!-- LAYANAN -->
@@ -142,6 +186,7 @@ Klik Beranda untuk motivasi 🚀
 <input id="tanggal" type="date">
 
 <button class="btn btn-wa" onclick="booking()">Kirim</button>
+
 </div>
 
 </section>
@@ -163,9 +208,7 @@ Klik Beranda untuk motivasi 🚀
 
 const WA="6281392197552";
 
-/* DATA */
 const data={
-
 Travel:[{nama:"Avanza Travel",harga:150000}],
 Hotel:[{nama:"Hotel RPJ",harga:250000}],
 Salon:[{nama:"Salon Cantik",harga:50000}],
@@ -185,8 +228,6 @@ TourGuide:[
 {nama:"Bukit Wisata",harga:0},
 {nama:"Desa Budaya",harga:0}
 ],
-
-/* LOKER */
 Loker:[
 {nama:"Admin Toko Online",harga:0},
 {nama:"Driver Travel",harga:0},
@@ -197,8 +238,6 @@ Loker:[
 {nama:"Security / Satpam",harga:0},
 {nama:"Pembantu Rumah Tangga",harga:0}
 ],
-
-/* KURSUS */
 Kursus:[
 {nama:"Bimbel SD",harga:150000},
 {nama:"Bimbel SMP",harga:200000},
@@ -209,8 +248,6 @@ Kursus:[
 {nama:"Bahasa Inggris",harga:250000},
 {nama:"Digital Marketing",harga:300000}
 ],
-
-/* OLSHOP */
 Olshop:[
 {nama:"Olshop A - Wanita",harga:50000},
 {nama:"Olshop B - Pria",harga:60000},
@@ -219,30 +256,21 @@ Olshop:[
 {nama:"Olshop E - Kosmetik",harga:45000},
 {nama:"Olshop F - UMKM Lokal",harga:25000}
 ],
-
-/* KOMPLIT */
 Komplit:[
 {nama:"Paket Travel + Pelaminan + Sound System",harga:0}
 ]
-
 };
 
-/* MENU */
 function menu(k){
 let html="<h3>"+k+"</h3>";
-
 data[k].forEach(i=>{
 html+=`
 <div class="card">
 <b>${i.nama}</b><br>
 💰 Rp ${i.harga}<br>
-<button class="btn" onclick="fill('${i.nama}',${i.harga})">
-BOOK / LAMAR
-</button>
-</div>
-`;
+<button class="btn" onclick="fill('${i.nama}',${i.harga})">BOOK</button>
+</div>`;
 });
-
 document.getElementById("sub").innerHTML=html;
 }
 
@@ -252,51 +280,54 @@ document.getElementById("hargaInput").value=h;
 scrollToSection("booking");
 }
 
-/* BOOKING */
 function booking(){
 let n=document.getElementById("nama").value;
 let l=document.getElementById("layananInput").value;
 let h=document.getElementById("hargaInput").value;
 let t=document.getElementById("tanggal").value;
 
-let msg=
-"REQUEST PESANAN\n"+
-"Nama: "+n+"\n"+
-"Layanan: "+l+"\n"+
-"Harga: "+h+"\n"+
-"Tanggal: "+t;
+let msg="REQUEST PESANAN\nNama:"+n+"\nLayanan:"+l+"\nHarga:"+h+"\nTanggal:"+t;
 
 window.open("https://wa.me/"+WA+"?text="+encodeURIComponent(msg));
 }
 
-/* INFO */
 function info(t){
 let html="";
 if(t=="beasiswa") html="Beasiswa tersedia untuk pelajar Nias Barat";
-if(t=="nias") html="Informasi resmi Nias Barat";
-
-document.getElementById("infoBox").innerHTML=
-"<div class='card'>"+html+"</div>";
+if(t=="nias") html="Informasi Nias Barat";
+document.getElementById("infoBox").innerHTML="<div class='card'>"+html+"</div>";
 }
 
-/* MOTIVASI */
 function motivasi(){
-const m=[
-"🔥 Jangan menyerah",
-"🚀 Sukses butuh proses",
-"💡 Ide kecil bisa besar",
-"🏆 Konsistensi kunci sukses"
-];
-document.getElementById("motivasiBox").innerText=
-m[Math.floor(Math.random()*m.length)];
+const m=["🔥 Jangan menyerah","🚀 Sukses butuh proses","💡 Ide kecil bisa besar","🏆 Konsistensi kunci sukses"];
+document.getElementById("motivasiBox").innerText=m[Math.floor(Math.random()*m.length)];
 }
 
-/* SCROLL */
 function scrollToSection(id){
 document.getElementById(id).scrollIntoView({behavior:"smooth"});
 }
 
 </script>
+
+<!-- KODE PEMILIK -->
+<div style="
+position:fixed;
+bottom:12px;
+right:12px;
+background:linear-gradient(135deg,#00695c,#00c9a7);
+color:#fff;
+padding:10px 12px;
+border-radius:12px;
+font-size:12px;
+z-index:9999;
+text-align:right;
+box-shadow:0 4px 10px rgba(0,0,0,.3);
+">
+<b>.......</b><br>
+Ep. Gulo<br>
+W. Daeli<br>
+B. Gulo
+</div>
 
 </body>
 </html>
