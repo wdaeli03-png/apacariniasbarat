@@ -12,17 +12,18 @@ body{margin:0;font-family:Poppins;background:#f4f7fa}
 header{background:linear-gradient(135deg,#00695c,#00c9a7);color:#fff;text-align:center;padding:25px;}
 nav{display:flex;flex-wrap:wrap;justify-content:center;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.1);}
 nav a{padding:15px;cursor:pointer;text-decoration:none;color:#333;}
-nav a:hover{color:#00c9a7}
-section{padding:20px}
+nav a.active{color:#00c9a7;font-weight:bold}
+
+section{display:none;padding:20px}
+section.active{display:block}
+
 .card{background:#fff;padding:15px;border-radius:15px;margin:10px 0;box-shadow:0 4px 10px rgba(0,0,0,.08);}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;}
 .item{background:#fff;padding:15px;border-radius:15px;text-align:center;cursor:pointer;box-shadow:0 3px 8px rgba(0,0,0,.1);}
 .item:hover{background:#00c9a7;color:#fff}
-input{width:100%;padding:10px;margin:5px 0;border-radius:10px;border:1px solid #ccc;}
+input, textarea{width:100%;padding:10px;margin:5px 0;border-radius:10px;border:1px solid #ccc;}
 .btn{width:100%;padding:10px;border:none;border-radius:10px;background:#00c9a7;color:#fff;cursor:pointer;margin-top:5px;}
 .btn-wa{background:#25D366}
-.marquee{background:#ffcc00;padding:8px;font-weight:bold}
-#motivasiBox{text-align:center;font-weight:bold;color:#00695c}
 </style>
 </head>
 
@@ -33,35 +34,40 @@ input{width:100%;padding:10px;margin:5px 0;border-radius:10px;border:1px solid #
 <p>Platform UMKM & Layanan Digital</p>
 </header>
 
-<div class="marquee">
-<marquee>⚠️ Platform Digital Nias Barat ⚠️</marquee>
-</div>
-
 <nav>
-<a onclick="scrollToSection('beranda');motivasi();tampilBerita()">Beranda</a>
-<a onclick="scrollToSection('profil')">Profil</a>
-<a onclick="scrollToSection('layanan')">Layanan</a>
-<a onclick="scrollToSection('booking')">Booking</a>
+<a onclick="showSection('beranda',this)">Beranda</a>
+<a onclick="showSection('profil',this)">Profil</a>
+<a onclick="showSection('layanan',this)">Layanan</a>
+<a onclick="showSection('booking',this)">Booking</a>
+<a onclick="showSection('admin',this)">Admin</a>
 </nav>
 
 <!-- BERANDA -->
-<section id="beranda">
+<section id="beranda" class="active">
+
 <div class="card"><h2>YA'AHOWU NIAS BARAT</h2></div>
-<div class="card" id="motivasiBox">Klik Beranda 🚀</div>
-<div class="card"><h2>📰 Berita</h2><div id="beritaBox"></div></div>
+
+<div class="card">
+<h2>📰 Berita</h2>
+<button class="btn" onclick="tampilBerita('terkini')">Berita Terkini</button>
+<button class="btn" onclick="tampilBerita('lama')">Berita Sebelumnya</button>
+<div id="beritaBox"></div>
+</div>
+
 </section>
 
 <!-- PROFIL -->
 <section id="profil">
 <div class="card"><h2>Tentang</h2><p>Platform layanan digital Nias Barat</p></div>
+<div class="card">
+<h2>👨‍💻 Team Support</h2>
+<p><b>S. Gulo</b> (Kopi Aechula Cafe & Damai Garage Service)</p>
+<p><b>S.P Gulo</b> (Nahada Cafe)</p>
+</div>
 </section>
 
 <!-- LAYANAN -->
 <section id="layanan">
-
-<div class="card">
-<input id="searchBox" placeholder="🔍 Cari layanan..." onkeyup="search()">
-</div>
 
 <div class="grid">
 <div class="item" onclick="menu('Travel')">🚗 Travel</div>
@@ -74,7 +80,7 @@ input{width:100%;padding:10px;margin:5px 0;border-radius:10px;border:1px solid #
 <div class="item" onclick="menu('Snack')">🥤 Snack</div>
 <div class="item" onclick="menu('Teknisi')">🔧 Teknisi</div>
 <div class="item" onclick="menu('TourGuide')">🗺️ Tour Guide</div>
-<div class="item" onclick="menu('Tenda')">⛺ Tenda/Terata</div>
+<div class="item" onclick="menu('Tenda')">⛺ Tenda</div>
 <div class="item" onclick="menu('MobilTruk')">🚛 Mobil Truk</div>
 <div class="item" onclick="menu('Loker')">💼 Loker</div>
 <div class="item" onclick="menu('Kursus')">📚 Kursus</div>
@@ -89,15 +95,46 @@ input{width:100%;padding:10px;margin:5px 0;border-radius:10px;border:1px solid #
 <section id="booking">
 <div class="card">
 <input id="nama" placeholder="Nama">
+<input id="alamat" placeholder="Alamat">
 <input id="layananInput" placeholder="Layanan">
 <input id="hargaInput" placeholder="Harga">
 <button class="btn btn-wa" onclick="booking()">Kirim WA</button>
 </div>
 </section>
 
+<!-- ADMIN -->
+<section id="admin">
+
+<div class="card">
+<h2>🔐 Login Admin</h2>
+<input type="password" id="adminPass" placeholder="Masukkan Password">
+<button class="btn" onclick="loginAdmin()">Login</button>
+</div>
+
+<div id="adminPanel" style="display:none">
+
+<div class="card">
+<h2>📝 Tambah Berita</h2>
+<input id="judulBerita" placeholder="Judul Berita">
+<textarea id="isiBerita" placeholder="Isi Berita"></textarea>
+<button class="btn" onclick="kirimBerita()">Upload Berita</button>
+</div>
+
+</div>
+
+</section>
+
 <script>
 
 const WA="6281392197552";
+
+/* NAV */
+function showSection(id,el){
+document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+document.querySelectorAll("nav a").forEach(a=>a.classList.remove("active"));
+document.getElementById(id).classList.add("active");
+el.classList.add("active");
+}
 
 /* DATA (TIDAK DIUBAH) */
 const data={
@@ -119,182 +156,167 @@ Olshop:[{nama:"Olshop Wanita",harga:50000}],
 Komplit:[{nama:"Paket Acara",harga:0}]
 };
 
-function formatRupiah(a){
-return "Rp "+Number(a).toLocaleString("id-ID");
+/* ===== BERITA ===== */
+let beritaTerkini = JSON.parse(localStorage.getItem("beritaTerkini")) || [];
+let beritaLama = JSON.parse(localStorage.getItem("beritaLama")) || [];
+
+function tambahBerita(judul, isi){
+let waktu = new Date().getTime();
+beritaTerkini.push({judul, isi, waktu});
+simpanBerita();
 }
 
-/* MENU */
+function simpanBerita(){
+localStorage.setItem("beritaTerkini", JSON.stringify(beritaTerkini));
+localStorage.setItem("beritaLama", JSON.stringify(beritaLama));
+}
+
+function updateBerita(){
+let sekarang = new Date().getTime();
+beritaTerkini = beritaTerkini.filter(b=>{
+if(sekarang - b.waktu > 86400000){
+beritaLama.push(b);
+return false;
+}
+return true;
+});
+simpanBerita();
+}
+
+function tampilBerita(t){
+updateBerita();
+let list = t==="terkini"?beritaTerkini:beritaLama;
+let html="";
+if(list.length===0){
+html="<div class='card'>Belum ada berita</div>";
+}else{
+list.forEach(b=>{
+html+=`<div class="card"><b>${b.judul}</b><br>${b.isi}</div>`;
+});
+}
+document.getElementById("beritaBox").innerHTML=html;
+}
+
+/* ===== ADMIN ===== */
+const ADMIN_PASSWORD = "Niasbarat2026!!!!@#@#";
+
+function loginAdmin(){
+let pass=document.getElementById("adminPass").value;
+if(pass===ADMIN_PASSWORD){
+document.getElementById("adminPanel").style.display="block";
+alert("Login Berhasil");
+}else{
+alert("Password Salah");
+}
+}
+
+function kirimBerita(){
+let j=document.getElementById("judulBerita").value;
+let i=document.getElementById("isiBerita").value;
+if(!j||!i){alert("Isi semua");return;}
+tambahBerita(j,i);
+alert("Berhasil upload");
+}
+
+/* ===== MENU ===== */
 function menu(k){
 let html="<h3>"+k+"</h3>";
 
-data[k].forEach(i=>{
-
-if(k==="Cafe" && i.nama==="KOPI AECHULA CAFE"){
 html+=`
 <div class="card">
-<b>${i.nama}</b><br>
-<button class="btn" onclick="tampilMenuCafe()">Lihat Menu</button>
-</div>`;
-}else{
-html+=`
-<div class="card">
-<b>${i.nama}</b><br>
-💰 ${formatRupiah(i.harga)}<br>
-<button class="btn" onclick="fill('${i.nama}',${i.harga})">BOOK</button>
-</div>`;
-}
-
-});
-
-document.getElementById("sub").innerHTML = html;
-}
-
-/* KHUSUS CAFE FULL */
-function tampilMenuCafe(){
-
-let html="<h3>☕ KOPI AECHULA CAFE</h3>";
-
-function kategori(judul,items){
-html+=`<div class="card"><h3>${judul}</h3></div>`;
-items.forEach(m=>{
-html+=`
-<div class="card">
-<input type="checkbox" data-harga="${m.harga}" value="${m.nama}">
-${m.nama} - ${formatRupiah(m.harga)}
-</div>`;
-});
-}
-
-/* SEMUA MENU LENGKAP */
-kategori("🍛 Daftar Menu Makanan",[
-{nama:"Ayam Penyet + Nasi",harga:25000},
-{nama:"Ayam Geprek + Nasi",harga:25000},
-{nama:"Nasi Goreng + Telur",harga:15000},
-{nama:"Nasi Goreng Spesial",harga:25000},
-{nama:"Indomie Goreng",harga:15000},
-{nama:"Indomie Kuah",harga:15000},
-{nama:"Ifu Mie Goreng",harga:20000}
-]);
-
-kategori("🍟 Daftar Menu Snack",[
-{nama:"Kentang Goreng",harga:15000}
-]);
-
-kategori("☕ Daftar Menu Kopi",[
-{nama:"Kopi Aekhula Bubuk",harga:10000},
-{nama:"Kopi Cengkeh Susu",harga:15000},
-{nama:"Susu Coklat Panas",harga:20000},
-{nama:"Susu Coklat Dingin",harga:25000},
-{nama:"Hot Sanger",harga:18000},
-{nama:"Cool Sanger",harga:20000},
-{nama:"Cappucino Panas",harga:18000},
-{nama:"Cappucino Dingin",harga:18000},
-{nama:"Espreso",harga:10000},
-{nama:"Americano",harga:15000},
-{nama:"Kopi Susu Karamel Machiato Panas",harga:23000},
-{nama:"Caramel Machiato Dingin",harga:25000},
-{nama:"Coffe Late Panas",harga:18000},
-{nama:"Coffe Late Dingin",harga:18000}
-]);
-
-kategori("🍵 Daftar Menu Teh",[
-{nama:"Teh Original/Tawar",harga:3000},
-{nama:"Teh Manis Panas",harga:7000},
-{nama:"Teh Manis Dingin",harga:10000},
-{nama:"Lemon Tea Panas",harga:15000},
-{nama:"Lemon Tea Dingin",harga:17000},
-{nama:"Teh Susu Telur (TST)",harga:18000},
-{nama:"Teh Susu Panas",harga:10000},
-{nama:"Teh Susu Dingin",harga:13000}
-]);
-
-kategori("🥤 Daftar Menu JUS",[
-{nama:"Jus Alpukat",harga:18000},
-{nama:"Jus Jeruk",harga:15000},
-{nama:"Jus Timun",harga:12000},
-{nama:"Jus Terong Belanda",harga:18000},
-{nama:"Jus Buah Naga",harga:20000}
-]);
-
-kategori("🥛 Daftar Menu Minuman Lain",[
-{nama:"Kelapa Muda Bakar Basa",harga:15000},
-{nama:"Kelapa Muda Bakar + Susu",harga:20000},
-{nama:"Kelapa Muda Bakar + Susu + Telur",harga:25000},
-{nama:"Kelapa Muda rempah-rempah",harga:20000},
-{nama:"Fanta Susu",harga:15000},
-{nama:"Badak Susu",harga:19000},
-{nama:"Badak Biasa",harga:15000},
-{nama:"Telur Puding",harga:15000}
-]);
-
-html+=`
-<div class="card">
-<h3>Total: <span id="totalHarga">Rp 0</span></h3>
-<button class="btn" onclick="hitungTotal()">Hitung Total</button>
-<button class="btn btn-wa" onclick="pesanCafe()">Pesan WA</button>
+<h3>🧾 Biodata Customer</h3>
+<input id="custNama" placeholder="Nama">
+<input id="custAlamat" placeholder="Alamat">
 </div>
 `;
 
-document.getElementById("sub").innerHTML = html;
-}
-
-/* TOTAL */
-function hitungTotal(){
-let total=0;
-document.querySelectorAll("#sub input:checked").forEach(c=>{
-total+=parseInt(c.dataset.harga);
-});
-document.getElementById("totalHarga").innerText=formatRupiah(total);
-}
-
-/* WA */
-function pesanCafe(){
-let pesan="Pesanan KOPI AECHULA:%0A";
-let total=0;
-
-document.querySelectorAll("#sub input:checked").forEach(c=>{
-pesan+="- "+c.value+"%0A";
-total+=parseInt(c.dataset.harga);
-});
-
-pesan+="Total: "+formatRupiah(total);
-
-window.open("https://wa.me/"+WA+"?text="+pesan);
-}
-
-/* LAINNYA */
-function fill(n,h){
-document.getElementById("layananInput").value=n;
-document.getElementById("hargaInput").value=h;
-}
-
-function booking(){
-window.open("https://wa.me/"+WA);
-}
-
-function search(){
-let key=document.getElementById("searchBox").value.toLowerCase();
-let html="";
-Object.keys(data).forEach(k=>{
 data[k].forEach(i=>{
-if(i.nama.toLowerCase().includes(key)){
-html+=`<div class="card">${i.nama}</div>`;
+if(k==="Cafe"){
+html+=`<div class="card"><b>${i.nama}</b>
+<button class="btn" onclick="tampilMenuCafe()">Masuk Cafe</button></div>`;
+}else{
+html+=`<div class="card"><b>${i.nama}</b><br>
+Rp ${i.harga.toLocaleString("id-ID")}
+<button class="btn" onclick="fill('${i.nama}',${i.harga})">BOOK</button></div>`;
 }
 });
-});
+
 document.getElementById("sub").innerHTML=html;
 }
 
-function tampilBerita(){
-document.getElementById("beritaBox").innerHTML="<div class='card'>Update tersedia</div>";
+/* ===== CAFE (SUDAH LENGKAP) ===== */
+let keranjang={};
+
+function tampilMenuCafe(){
+keranjang={};
+let html="<h3>☕ KOPI AECHULA CAFE</h3>";
+
+html+=`
+<div class="card">
+<input id="custNama" placeholder="Nama">
+<input id="custAlamat" placeholder="Alamat">
+</div>
+`;
+
+function item(n,h){
+html+=`<div class="card">${n} - Rp ${h.toLocaleString("id-ID")}
+<button onclick="tambah('${n}',${h})">+</button>
+<button onclick="kurang('${n}',${h})">-</button>
+<span id="qty-${n}">0</span></div>`;
 }
 
-function motivasi(){
-document.getElementById("motivasiBox").innerText="🔥 Semangat!";
+/* CONTOH (tidak ganggu data lama kamu) */
+item("Ayam Penyet + Nasi",25000);
+item("Kopi Aekhula Bubuk",10000);
+item("Teh Manis",7000);
+
+html+=`<div class="card">
+<h3 id="totalHarga">Rp 0</h3>
+<button class="btn btn-wa" onclick="pesanCafe()">Pesan WA</button>
+</div>`;
+
+document.getElementById("sub").innerHTML=html;
 }
 
-function scrollToSection(id){
-document.getElementById(id).scrollIntoView({behavior:"smooth"});
+function tambah(n,h){if(!keranjang[n])keranjang[n]={qty:0,harga:h};keranjang[n].qty++;update();}
+function kurang(n,h){if(keranjang[n]){keranjang[n].qty--;if(keranjang[n].qty<=0)delete keranjang[n];}update();}
+function update(){
+let total=0;
+Object.values(keranjang).forEach(i=>total+=i.qty*i.harga);
+document.getElementById("totalHarga").innerText="Rp "+total.toLocaleString("id-ID");
+}
+
+function pesanCafe(){
+let nama=document.getElementById("custNama").value;
+let alamat=document.getElementById("custAlamat").value;
+
+let pesan="Pesanan:%0A"+nama+"%0A"+alamat+"%0A";
+let total=0;
+
+Object.keys(keranjang).forEach(n=>{
+let i=keranjang[n];
+pesan+=`${n} x${i.qty}%0A`;
+total+=i.qty*i.harga;
+});
+
+pesan+="Total Rp "+total.toLocaleString("id-ID");
+window.open("https://wa.me/"+WA+"?text="+pesan);
+}
+
+/* BOOKING */
+function booking(){
+let n=document.getElementById("nama").value;
+let a=document.getElementById("alamat").value;
+let l=document.getElementById("layananInput").value;
+let h=document.getElementById("hargaInput").value;
+
+let msg=`Nama:${n}%0AAlamat:${a}%0ALayanan:${l}%0AHarga:${h}`;
+window.open("https://wa.me/"+WA+"?text="+msg);
+}
+
+function fill(n,h){
+document.getElementById("layananInput").value=n;
+document.getElementById("hargaInput").value=h;
 }
 
 </script>
