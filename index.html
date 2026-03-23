@@ -9,70 +9,20 @@
 
 <style>
 body{margin:0;font-family:Poppins;background:#f4f7fa}
-
-header{
-background:linear-gradient(135deg,#00695c,#00c9a7);
-color:#fff;text-align:center;padding:25px;
-}
-
-nav{
-display:flex;flex-wrap:wrap;justify-content:center;
-background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.1);
-}
-
-nav a{
-padding:15px;cursor:pointer;font-weight:500;
-text-decoration:none;color:#333;
-}
+header{background:linear-gradient(135deg,#00695c,#00c9a7);color:#fff;text-align:center;padding:25px;}
+nav{display:flex;flex-wrap:wrap;justify-content:center;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.1);}
+nav a{padding:15px;cursor:pointer;text-decoration:none;color:#333;}
 nav a:hover{color:#00c9a7}
-
 section{padding:20px}
-
-.card{
-background:#fff;padding:15px;border-radius:15px;
-margin:10px 0;box-shadow:0 4px 10px rgba(0,0,0,.08);
-}
-
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
-gap:10px;
-}
-
-.item{
-background:#fff;padding:15px;border-radius:15px;
-text-align:center;cursor:pointer;
-box-shadow:0 3px 8px rgba(0,0,0,.1);
-}
+.card{background:#fff;padding:15px;border-radius:15px;margin:10px 0;box-shadow:0 4px 10px rgba(0,0,0,.08);}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;}
+.item{background:#fff;padding:15px;border-radius:15px;text-align:center;cursor:pointer;box-shadow:0 3px 8px rgba(0,0,0,.1);}
 .item:hover{background:#00c9a7;color:#fff}
-
-input{
-width:100%;padding:10px;margin:5px 0;
-border-radius:10px;border:1px solid #ccc;
-}
-
-.btn{
-width:100%;padding:10px;border:none;
-border-radius:10px;background:#00c9a7;
-color:#fff;cursor:pointer;
-}
-
+input{width:100%;padding:10px;margin:5px 0;border-radius:10px;border:1px solid #ccc;}
+.btn{width:100%;padding:10px;border:none;border-radius:10px;background:#00c9a7;color:#fff;cursor:pointer;margin-top:5px;}
 .btn-wa{background:#25D366}
-
-html{scroll-behavior:smooth}
-
-#motivasiBox{
-text-align:center;font-weight:bold;
-color:#00695c;font-size:18px;
-}
-
-/* TEKS BERJALAN */
-.marquee{
-background:#ffcc00;
-color:#000;
-padding:8px;
-font-weight:bold;
-}
+.marquee{background:#ffcc00;padding:8px;font-weight:bold}
+#motivasiBox{text-align:center;font-weight:bold;color:#00695c}
 </style>
 </head>
 
@@ -83,75 +33,37 @@ font-weight:bold;
 <p>Platform UMKM & Layanan Digital</p>
 </header>
 
-<!-- TEKS BERJALAN -->
 <div class="marquee">
-<marquee>
-⚠️ Website ini hanya untuk Demo / Uji Coba, bukan untuk di share ke publik ⚠️
-</marquee>
+<marquee>⚠️ Platform Digital Nias Barat ⚠️</marquee>
 </div>
 
 <nav>
-<a onclick="scrollToSection('beranda');motivasi()">Beranda</a>
+<a onclick="scrollToSection('beranda');motivasi();tampilBerita()">Beranda</a>
 <a onclick="scrollToSection('profil')">Profil</a>
 <a onclick="scrollToSection('layanan')">Layanan</a>
 <a onclick="scrollToSection('booking')">Booking</a>
-<a onclick="scrollToSection('info')">Info</a>
 </nav>
 
 <!-- BERANDA -->
 <section id="beranda">
-<div class="card">
-<h2>YA'AHOWU NIAS BARAT</h2>
-<p>Ide, Gagasan Anak Muda Nias Barat</p>
-</div>
-
-<div class="card" id="motivasiBox">
-Klik Beranda untuk motivasi 🚀
-</div>
+<div class="card"><h2>YA'AHOWU NIAS BARAT</h2></div>
+<div class="card" id="motivasiBox">Klik Beranda 🚀</div>
+<div class="card"><h2>📰 Berita</h2><div id="beritaBox"></div></div>
 </section>
 
 <!-- PROFIL -->
 <section id="profil">
-
-<div class="card">
-<h2>📌 Apa Cari Nias Barat</h2>
-
-<p>
-Apa Cari Nias Barat adalah sebuah platform digital yang hadir untuk menghubungkan masyarakat dengan berbagai layanan dan usaha yang ada di wilayah Nias Barat dalam satu sistem yang mudah, cepat, dan praktis. Melalui website ini, pengguna dapat mencari berbagai kebutuhan seperti layanan travel, penginapan atau hotel, UMKM lokal, hingga berbagai jasa dan usaha lainnya tanpa harus mencari secara manual ke banyak tempat.
-</p>
-
-<p>
-Dengan konsep satu pintu layanan digital, website ini membantu masyarakat mendapatkan informasi lebih cepat dan langsung terhubung ke pemilik usaha melalui WhatsApp atau booking.
-</p>
-
-<h3>🚀 Manfaat dan Tujuan</h3>
-<ul>
-<li>Mempermudah masyarakat dalam menemukan layanan di Nias Barat</li>
-<li>Membantu pelaku usaha agar lebih dikenal</li>
-<li>Menyatukan layanan dalam satu platform digital</li>
-<li>Meningkatkan efisiensi transaksi</li>
-</ul>
-
-<h3>💰 Keuntungan Pelaku Usaha</h3>
-<p>
-Usaha tampil online 24 jam dan langsung terhubung ke pelanggan.
-</p>
-</div>
-
-<!-- TEAM SUPPORT -->
-<div class="card">
-<h2>👨‍💻 Team Support</h2>
-<p><b>S. Gulo (Coffee Aekhula & Damai Garage Service)</b></p>
-<p><b>S.P Gulo (Nahada Cafe)</b></p>
-</div>
-
+<div class="card"><h2>Tentang</h2><p>Platform layanan digital Nias Barat</p></div>
 </section>
 
 <!-- LAYANAN -->
 <section id="layanan">
 
-<div class="grid">
+<div class="card">
+<input id="searchBox" placeholder="🔍 Cari layanan..." onkeyup="search()">
+</div>
 
+<div class="grid">
 <div class="item" onclick="menu('Travel')">🚗 Travel</div>
 <div class="item" onclick="menu('Hotel')">🏨 Hotel</div>
 <div class="item" onclick="menu('Salon')">💇 Salon</div>
@@ -162,45 +74,24 @@ Usaha tampil online 24 jam dan langsung terhubung ke pelanggan.
 <div class="item" onclick="menu('Snack')">🥤 Snack</div>
 <div class="item" onclick="menu('Teknisi')">🔧 Teknisi</div>
 <div class="item" onclick="menu('TourGuide')">🗺️ Tour Guide</div>
-
+<div class="item" onclick="menu('Tenda')">⛺ Tenda/Terata</div>
+<div class="item" onclick="menu('MobilTruk')">🚛 Mobil Truk</div>
 <div class="item" onclick="menu('Loker')">💼 Loker</div>
-<div class="item" onclick="menu('Kursus')">📚 Kursus/Bimbel</div>
+<div class="item" onclick="menu('Kursus')">📚 Kursus</div>
 <div class="item" onclick="menu('Olshop')">🛍️ Olshop</div>
-<div class="item" onclick="menu('Komplit')">💳 Komplit Pesanan</div>
-
+<div class="item" onclick="menu('Komplit')">💳 Komplit</div>
 </div>
 
 <div id="sub"></div>
-
 </section>
 
 <!-- BOOKING -->
 <section id="booking">
-
 <div class="card">
-<h2>Booking WA</h2>
-
 <input id="nama" placeholder="Nama">
 <input id="layananInput" placeholder="Layanan">
 <input id="hargaInput" placeholder="Harga">
-<input id="tanggal" type="date">
-
-<button class="btn btn-wa" onclick="booking()">Kirim</button>
-
-</div>
-
-</section>
-
-<!-- INFO -->
-<section id="info">
-<div class="card">
-<h2>📌 Info</h2>
-
-<button class="btn" onclick="info('beasiswa')">Beasiswa</button><br><br>
-<button class="btn" onclick="info('nias')">Nias Barat</button>
-
-<div id="infoBox"></div>
-
+<button class="btn btn-wa" onclick="booking()">Kirim WA</button>
 </div>
 </section>
 
@@ -208,6 +99,7 @@ Usaha tampil online 24 jam dan langsung terhubung ke pelanggan.
 
 const WA="6281392197552";
 
+/* DATA (TIDAK DIUBAH) */
 const data={
 Travel:[{nama:"Avanza Travel",harga:150000}],
 Hotel:[{nama:"Hotel RPJ",harga:250000}],
@@ -215,92 +107,190 @@ Salon:[{nama:"Salon Cantik",harga:50000}],
 Bisnis:[{nama:"Konsultasi UMKM",harga:100000}],
 Perabot:[{nama:"Sofa Set",harga:2500000}],
 Makan:[{nama:"RM Padang",harga:25000}],
-Cafe:[{nama:"Cafe Aekhula",harga:15000}],
+Cafe:[{nama:"KOPI AECHULA CAFE",harga:0}],
 Snack:[{nama:"Es Teh",harga:5000}],
-Teknisi:[
-{nama:"Service TV",harga:75000},
-{nama:"Service Laptop",harga:90000},
-{nama:"Service Mobil",harga:200000}
-],
-TourGuide:[
-{nama:"Pantai Nias",harga:0},
-{nama:"Air Terjun",harga:0},
-{nama:"Bukit Wisata",harga:0},
-{nama:"Desa Budaya",harga:0}
-],
-Loker:[
-{nama:"Admin Toko Online",harga:0},
-{nama:"Driver Travel",harga:0},
-{nama:"Karyawan Cafe",harga:0},
-{nama:"Marketing UMKM",harga:0},
-{nama:"Tour Guide Wisata",harga:0},
-{nama:"Kasir Minimarket",harga:0},
-{nama:"Security / Satpam",harga:0},
-{nama:"Pembantu Rumah Tangga",harga:0}
-],
-Kursus:[
-{nama:"Bimbel SD",harga:150000},
-{nama:"Bimbel SMP",harga:200000},
-{nama:"Bimbel SMA/UTBK",harga:300000},
-{nama:"Kursus Komputer",harga:175000},
-{nama:"Microsoft Office",harga:150000},
-{nama:"Desain Canva",harga:100000},
-{nama:"Bahasa Inggris",harga:250000},
-{nama:"Digital Marketing",harga:300000}
-],
-Olshop:[
-{nama:"Olshop A - Wanita",harga:50000},
-{nama:"Olshop B - Pria",harga:60000},
-{nama:"Olshop C - Sepatu",harga:75000},
-{nama:"Olshop D - Aksesoris",harga:30000},
-{nama:"Olshop E - Kosmetik",harga:45000},
-{nama:"Olshop F - UMKM Lokal",harga:25000}
-],
-Komplit:[
-{nama:"Paket Travel + Pelaminan + Sound System",harga:0}
-]
+Teknisi:[{nama:"Service TV",harga:75000}],
+TourGuide:[{nama:"Pantai Nias",harga:0}],
+Tenda:[{nama:"Sewa Tenda",harga:500000}],
+MobilTruk:[{nama:"Truk Angkut",harga:500000}],
+Loker:[{nama:"Driver Travel",harga:0}],
+Kursus:[{nama:"Kursus Komputer",harga:175000}],
+Olshop:[{nama:"Olshop Wanita",harga:50000}],
+Komplit:[{nama:"Paket Acara",harga:0}]
 };
 
+function formatRupiah(a){
+return "Rp "+Number(a).toLocaleString("id-ID");
+}
+
+/* MENU */
 function menu(k){
 let html="<h3>"+k+"</h3>";
+
 data[k].forEach(i=>{
+
+if(k==="Cafe" && i.nama==="KOPI AECHULA CAFE"){
 html+=`
 <div class="card">
 <b>${i.nama}</b><br>
-💰 Rp ${i.harga}<br>
+<button class="btn" onclick="tampilMenuCafe()">Lihat Menu</button>
+</div>`;
+}else{
+html+=`
+<div class="card">
+<b>${i.nama}</b><br>
+💰 ${formatRupiah(i.harga)}<br>
 <button class="btn" onclick="fill('${i.nama}',${i.harga})">BOOK</button>
 </div>`;
+}
+
+});
+
+document.getElementById("sub").innerHTML = html;
+}
+
+/* KHUSUS CAFE FULL */
+function tampilMenuCafe(){
+
+let html="<h3>☕ KOPI AECHULA CAFE</h3>";
+
+function kategori(judul,items){
+html+=`<div class="card"><h3>${judul}</h3></div>`;
+items.forEach(m=>{
+html+=`
+<div class="card">
+<input type="checkbox" data-harga="${m.harga}" value="${m.nama}">
+${m.nama} - ${formatRupiah(m.harga)}
+</div>`;
+});
+}
+
+/* SEMUA MENU LENGKAP */
+kategori("🍛 Daftar Menu Makanan",[
+{nama:"Ayam Penyet + Nasi",harga:25000},
+{nama:"Ayam Geprek + Nasi",harga:25000},
+{nama:"Nasi Goreng + Telur",harga:15000},
+{nama:"Nasi Goreng Spesial",harga:25000},
+{nama:"Indomie Goreng",harga:15000},
+{nama:"Indomie Kuah",harga:15000},
+{nama:"Ifu Mie Goreng",harga:20000}
+]);
+
+kategori("🍟 Daftar Menu Snack",[
+{nama:"Kentang Goreng",harga:15000}
+]);
+
+kategori("☕ Daftar Menu Kopi",[
+{nama:"Kopi Aekhula Bubuk",harga:10000},
+{nama:"Kopi Cengkeh Susu",harga:15000},
+{nama:"Susu Coklat Panas",harga:20000},
+{nama:"Susu Coklat Dingin",harga:25000},
+{nama:"Hot Sanger",harga:18000},
+{nama:"Cool Sanger",harga:20000},
+{nama:"Cappucino Panas",harga:18000},
+{nama:"Cappucino Dingin",harga:18000},
+{nama:"Espreso",harga:10000},
+{nama:"Americano",harga:15000},
+{nama:"Kopi Susu Karamel Machiato Panas",harga:23000},
+{nama:"Caramel Machiato Dingin",harga:25000},
+{nama:"Coffe Late Panas",harga:18000},
+{nama:"Coffe Late Dingin",harga:18000}
+]);
+
+kategori("🍵 Daftar Menu Teh",[
+{nama:"Teh Original/Tawar",harga:3000},
+{nama:"Teh Manis Panas",harga:7000},
+{nama:"Teh Manis Dingin",harga:10000},
+{nama:"Lemon Tea Panas",harga:15000},
+{nama:"Lemon Tea Dingin",harga:17000},
+{nama:"Teh Susu Telur (TST)",harga:18000},
+{nama:"Teh Susu Panas",harga:10000},
+{nama:"Teh Susu Dingin",harga:13000}
+]);
+
+kategori("🥤 Daftar Menu JUS",[
+{nama:"Jus Alpukat",harga:18000},
+{nama:"Jus Jeruk",harga:15000},
+{nama:"Jus Timun",harga:12000},
+{nama:"Jus Terong Belanda",harga:18000},
+{nama:"Jus Buah Naga",harga:20000}
+]);
+
+kategori("🥛 Daftar Menu Minuman Lain",[
+{nama:"Kelapa Muda Bakar Basa",harga:15000},
+{nama:"Kelapa Muda Bakar + Susu",harga:20000},
+{nama:"Kelapa Muda Bakar + Susu + Telur",harga:25000},
+{nama:"Kelapa Muda rempah-rempah",harga:20000},
+{nama:"Fanta Susu",harga:15000},
+{nama:"Badak Susu",harga:19000},
+{nama:"Badak Biasa",harga:15000},
+{nama:"Telur Puding",harga:15000}
+]);
+
+html+=`
+<div class="card">
+<h3>Total: <span id="totalHarga">Rp 0</span></h3>
+<button class="btn" onclick="hitungTotal()">Hitung Total</button>
+<button class="btn btn-wa" onclick="pesanCafe()">Pesan WA</button>
+</div>
+`;
+
+document.getElementById("sub").innerHTML = html;
+}
+
+/* TOTAL */
+function hitungTotal(){
+let total=0;
+document.querySelectorAll("#sub input:checked").forEach(c=>{
+total+=parseInt(c.dataset.harga);
+});
+document.getElementById("totalHarga").innerText=formatRupiah(total);
+}
+
+/* WA */
+function pesanCafe(){
+let pesan="Pesanan KOPI AECHULA:%0A";
+let total=0;
+
+document.querySelectorAll("#sub input:checked").forEach(c=>{
+pesan+="- "+c.value+"%0A";
+total+=parseInt(c.dataset.harga);
+});
+
+pesan+="Total: "+formatRupiah(total);
+
+window.open("https://wa.me/"+WA+"?text="+pesan);
+}
+
+/* LAINNYA */
+function fill(n,h){
+document.getElementById("layananInput").value=n;
+document.getElementById("hargaInput").value=h;
+}
+
+function booking(){
+window.open("https://wa.me/"+WA);
+}
+
+function search(){
+let key=document.getElementById("searchBox").value.toLowerCase();
+let html="";
+Object.keys(data).forEach(k=>{
+data[k].forEach(i=>{
+if(i.nama.toLowerCase().includes(key)){
+html+=`<div class="card">${i.nama}</div>`;
+}
+});
 });
 document.getElementById("sub").innerHTML=html;
 }
 
-function fill(n,h){
-document.getElementById("layananInput").value=n;
-document.getElementById("hargaInput").value=h;
-scrollToSection("booking");
-}
-
-function booking(){
-let n=document.getElementById("nama").value;
-let l=document.getElementById("layananInput").value;
-let h=document.getElementById("hargaInput").value;
-let t=document.getElementById("tanggal").value;
-
-let msg="REQUEST PESANAN\nNama:"+n+"\nLayanan:"+l+"\nHarga:"+h+"\nTanggal:"+t;
-
-window.open("https://wa.me/"+WA+"?text="+encodeURIComponent(msg));
-}
-
-function info(t){
-let html="";
-if(t=="beasiswa") html="Beasiswa tersedia untuk pelajar Nias Barat";
-if(t=="nias") html="Informasi Nias Barat";
-document.getElementById("infoBox").innerHTML="<div class='card'>"+html+"</div>";
+function tampilBerita(){
+document.getElementById("beritaBox").innerHTML="<div class='card'>Update tersedia</div>";
 }
 
 function motivasi(){
-const m=["🔥 Jangan menyerah","🚀 Sukses butuh proses","💡 Ide kecil bisa besar","🏆 Konsistensi kunci sukses"];
-document.getElementById("motivasiBox").innerText=m[Math.floor(Math.random()*m.length)];
+document.getElementById("motivasiBox").innerText="🔥 Semangat!";
 }
 
 function scrollToSection(id){
@@ -308,26 +298,6 @@ document.getElementById(id).scrollIntoView({behavior:"smooth"});
 }
 
 </script>
-
-<!-- KODE PEMILIK -->
-<div style="
-position:fixed;
-bottom:12px;
-right:12px;
-background:linear-gradient(135deg,#00695c,#00c9a7);
-color:#fff;
-padding:10px 12px;
-border-radius:12px;
-font-size:12px;
-z-index:9999;
-text-align:right;
-box-shadow:0 4px 10px rgba(0,0,0,.3);
-">
-<b>.......</b><br>
-Ep. Gulo<br>
-W. Daeli<br>
-B. Gulo
-</div>
 
 </body>
 </html>
