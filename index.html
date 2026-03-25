@@ -182,6 +182,64 @@ Rp ${i.harga.toLocaleString("id-ID")}
 document.getElementById("sub").innerHTML=html;
 }
 
+/* ================= RM FEBRI FULL MENU ================= */
+function menuFebri(){
+keranjang={};
+let html="<h3>🍛 RM. FEBRI</h3>";
+
+html+=`<button class="btn" onclick="menu('Makan')">⬅️ Kembali</button>`;
+
+html+=`
+<div class="card">
+<input id="custNama" placeholder="Nama">
+<input id="custAlamat" placeholder="Alamat">
+</div>
+`;
+
+function item(n,h){
+html+=`<div class="card">${n} - Rp ${h}
+<button onclick="tambah('${n}',${h})">+</button>
+<button onclick="kurang('${n}',${h})">-</button>
+<span id="qty-${n}">0</span></div>`;
+}
+
+/* MAKANAN */
+html+=`<div class="card"><b>🍖 Makanan</b></div>`;
+item("Babi Panggang",25000);
+item("Babi Cincang",25000);
+item("Babi Sup",25000);
+item("Ikan",20000);
+item("Ayam",20000);
+
+/* MIE */
+html+=`<div class="card"><b>🍜 Mie</b></div>`;
+item("Mie Goreng",20000);
+item("Mie Kuah",20000);
+item("Mie Bakso",22000);
+item("Mie Ayam Bakso",25000);
+item("Mihun Goreng",18000);
+item("Misop",20000);
+item("Ifu Mie",25000);
+
+/* MINUMAN */
+html+=`<div class="card"><b>🥤 Aneka Jus</b></div>`;
+item("Jus Pokat",15000);
+item("Jus Jeruk",10000);
+item("Jus Terong Belanda",15000);
+item("Jus Timun",10000);
+item("Jus Pepaya",10000);
+item("Jus Buah Naga",15000);
+item("Jus Sirsak",15000);
+item("Kopi Hitam",8000);
+
+html+=`<div class="card">
+<h3 id="totalHarga">Rp 0</h3>
+<button class="btn btn-wa" onclick="pesanCafe()">Pesan WA</button>
+</div>`;
+
+document.getElementById("sub").innerHTML=html;
+}
+
 /* CAFE */
 let keranjang={};
 
@@ -200,32 +258,6 @@ html+=`<div class="card">${n} - Rp ${h}
 
 item("Kopi",10000);
 item("Teh",7000);
-
-html+=`<div class="card">
-<h3 id="totalHarga">Rp 0</h3>
-<button class="btn btn-wa" onclick="pesanCafe()">Pesan WA</button>
-</div>`;
-
-document.getElementById("sub").innerHTML=html;
-}
-
-/* RM FEBRI */
-function menuFebri(){
-keranjang={};
-let html="<h3>🍛 RM. FEBRI</h3>";
-
-html+=`<button class="btn" onclick="menu('Makan')">⬅️ Kembali</button>`;
-
-function item(n,h){
-html+=`<div class="card">${n} - Rp ${h}
-<button onclick="tambah('${n}',${h})">+</button>
-<button onclick="kurang('${n}',${h})">-</button>
-<span id="qty-${n}">0</span></div>`;
-}
-
-item("Nasi Goreng",20000);
-item("Mie Goreng",18000);
-item("Ayam Geprek",22000);
 
 html+=`<div class="card">
 <h3 id="totalHarga">Rp 0</h3>
@@ -293,6 +325,25 @@ let j=document.getElementById("judulBerita").value;
 let i=document.getElementById("isiBerita").value;
 localStorage.setItem("berita",j+"|"+i);
 alert("Berhasil");
+}
+
+/* BERITA FIX */
+function tampilBerita(mode){
+let box=document.getElementById("beritaBox");
+let data=localStorage.getItem("berita");
+
+if(!data){
+box.innerHTML="<p>Belum ada berita</p>";
+return;
+}
+
+let [judul,isi]=data.split("|");
+
+if(mode==="terkini"){
+box.innerHTML=`<div class="card"><h3>${judul}</h3><p>${isi}</p></div>`;
+}else{
+box.innerHTML=`<div class="card"><p>Belum ada arsip berita</p></div>`;
+}
 }
 </script>
 
