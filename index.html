@@ -13,10 +13,8 @@ header{background:linear-gradient(135deg,#00695c,#00c9a7);color:#fff;text-align:
 nav{display:flex;flex-wrap:wrap;justify-content:center;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.1);}
 nav a{padding:15px;cursor:pointer;text-decoration:none;color:#333;}
 nav a.active{color:#00c9a7;font-weight:bold}
-
 section{display:none;padding:20px}
 section.active{display:block}
-
 .card{background:#fff;padding:15px;border-radius:15px;margin:10px 0;box-shadow:0 4px 10px rgba(0,0,0,.08);}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;}
 .item{background:#fff;padding:15px;border-radius:15px;text-align:center;cursor:pointer;box-shadow:0 3px 8px rgba(0,0,0,.1);}
@@ -44,7 +42,6 @@ input, textarea{width:100%;padding:10px;margin:5px 0;border-radius:10px;border:1
 
 <!-- BERANDA -->
 <section id="beranda" class="active">
-
 <div class="card"><h2>YA'AHOWU NIAS BARAT</h2></div>
 
 <div class="card">
@@ -53,7 +50,6 @@ input, textarea{width:100%;padding:10px;margin:5px 0;border-radius:10px;border:1
 <button class="btn" onclick="tampilBerita('lama')">Berita Sebelumnya</button>
 <div id="beritaBox"></div>
 </div>
-
 </section>
 
 <!-- PROFIL -->
@@ -61,14 +57,13 @@ input, textarea{width:100%;padding:10px;margin:5px 0;border-radius:10px;border:1
 <div class="card"><h2>Tentang</h2><p>Platform layanan digital Nias Barat</p></div>
 <div class="card">
 <h2>👨‍💻 Team Support</h2>
-<p><b>S. Gulo</b> (Kopi Aechula Cafe & Damai Garage Service)</p>
-<p><b>S.P Gulo</b> (Nahada Cafe)</p>
+<p><b>S. Gulo</b></p>
+<p><b>S.P Gulo</b></p>
 </div>
 </section>
 
 <!-- LAYANAN -->
 <section id="layanan">
-
 <div class="grid">
 <div class="item" onclick="menu('Travel')">🚗 Travel</div>
 <div class="item" onclick="menu('Hotel')">🏨 Hotel</div>
@@ -87,7 +82,6 @@ input, textarea{width:100%;padding:10px;margin:5px 0;border-radius:10px;border:1
 <div class="item" onclick="menu('Olshop')">🛍️ Olshop</div>
 <div class="item" onclick="menu('Komplit')">💳 Komplit</div>
 </div>
-
 <div id="sub"></div>
 </section>
 
@@ -104,28 +98,23 @@ input, textarea{width:100%;padding:10px;margin:5px 0;border-radius:10px;border:1
 
 <!-- ADMIN -->
 <section id="admin">
-
 <div class="card">
 <h2>🔐 Login Admin</h2>
-<input type="password" id="adminPass" placeholder="Masukkan Password">
+<input type="password" id="adminPass">
 <button class="btn" onclick="loginAdmin()">Login</button>
 </div>
 
 <div id="adminPanel" style="display:none">
-
 <div class="card">
 <h2>📝 Tambah Berita</h2>
-<input id="judulBerita" placeholder="Judul Berita">
-<textarea id="isiBerita" placeholder="Isi Berita"></textarea>
-<button class="btn" onclick="kirimBerita()">Upload Berita</button>
+<input id="judulBerita">
+<textarea id="isiBerita"></textarea>
+<button class="btn" onclick="kirimBerita()">Upload</button>
 </div>
-
 </div>
-
 </section>
 
 <script>
-
 const WA="6281392197552";
 
 /* NAV */
@@ -136,14 +125,17 @@ document.getElementById(id).classList.add("active");
 el.classList.add("active");
 }
 
-/* DATA (TIDAK DIUBAH) */
+/* DATA */
 const data={
 Travel:[{nama:"Avanza Travel",harga:150000}],
 Hotel:[{nama:"Hotel RPJ",harga:250000}],
 Salon:[{nama:"Salon Cantik",harga:50000}],
 Bisnis:[{nama:"Konsultasi UMKM",harga:100000}],
 Perabot:[{nama:"Sofa Set",harga:2500000}],
-Makan:[{nama:"RM Padang",harga:25000}],
+Makan:[
+{nama:"RM Padang",harga:25000},
+{nama:"Rm. Febri",harga:30000}
+],
 Cafe:[{nama:"KOPI AECHULA CAFE",harga:0}],
 Snack:[{nama:"Es Teh",harga:5000}],
 Teknisi:[{nama:"Service TV",harga:75000}],
@@ -156,119 +148,58 @@ Olshop:[{nama:"Olshop Wanita",harga:50000}],
 Komplit:[{nama:"Paket Acara",harga:0}]
 };
 
-/* ===== BERITA ===== */
-let beritaTerkini = JSON.parse(localStorage.getItem("beritaTerkini")) || [];
-let beritaLama = JSON.parse(localStorage.getItem("beritaLama")) || [];
-
-function tambahBerita(judul, isi){
-let waktu = new Date().getTime();
-beritaTerkini.push({judul, isi, waktu});
-simpanBerita();
-}
-
-function simpanBerita(){
-localStorage.setItem("beritaTerkini", JSON.stringify(beritaTerkini));
-localStorage.setItem("beritaLama", JSON.stringify(beritaLama));
-}
-
-function updateBerita(){
-let sekarang = new Date().getTime();
-beritaTerkini = beritaTerkini.filter(b=>{
-if(sekarang - b.waktu > 86400000){
-beritaLama.push(b);
-return false;
-}
-return true;
-});
-simpanBerita();
-}
-
-function tampilBerita(t){
-updateBerita();
-let list = t==="terkini"?beritaTerkini:beritaLama;
-let html="";
-if(list.length===0){
-html="<div class='card'>Belum ada berita</div>";
-}else{
-list.forEach(b=>{
-html+=`<div class="card"><b>${b.judul}</b><br>${b.isi}</div>`;
-});
-}
-document.getElementById("beritaBox").innerHTML=html;
-}
-
-/* ===== ADMIN ===== */
-const ADMIN_PASSWORD = "Niasbarat2026!!!!@#@#";
-
-function loginAdmin(){
-let pass=document.getElementById("adminPass").value;
-if(pass===ADMIN_PASSWORD){
-document.getElementById("adminPanel").style.display="block";
-alert("Login Berhasil");
-}else{
-alert("Password Salah");
-}
-}
-
-function kirimBerita(){
-let j=document.getElementById("judulBerita").value;
-let i=document.getElementById("isiBerita").value;
-if(!j||!i){alert("Isi semua");return;}
-tambahBerita(j,i);
-alert("Berhasil upload");
-}
-
-/* ===== MENU ===== */
+/* MENU */
 function menu(k){
 let html="<h3>"+k+"</h3>";
 
 html+=`
 <div class="card">
-<h3>🧾 Biodata Customer</h3>
 <input id="custNama" placeholder="Nama">
 <input id="custAlamat" placeholder="Alamat">
 </div>
 `;
 
 data[k].forEach(i=>{
+
 if(k==="Cafe"){
 html+=`<div class="card"><b>${i.nama}</b>
 <button class="btn" onclick="tampilMenuCafe()">Masuk Cafe</button></div>`;
-}else{
+}
+
+else if(i.nama==="Rm. Febri"){
+html+=`<div class="card"><b>${i.nama}</b>
+<button class="btn" onclick="menuFebri()">Masuk Menu RM</button></div>`;
+}
+
+else{
 html+=`<div class="card"><b>${i.nama}</b><br>
 Rp ${i.harga.toLocaleString("id-ID")}
 <button class="btn" onclick="fill('${i.nama}',${i.harga})">BOOK</button></div>`;
 }
+
 });
 
 document.getElementById("sub").innerHTML=html;
 }
 
-/* ===== CAFE (SUDAH LENGKAP) ===== */
+/* CAFE */
 let keranjang={};
 
 function tampilMenuCafe(){
 keranjang={};
 let html="<h3>☕ KOPI AECHULA CAFE</h3>";
 
-html+=`
-<div class="card">
-<input id="custNama" placeholder="Nama">
-<input id="custAlamat" placeholder="Alamat">
-</div>
-`;
+html+=`<button class="btn" onclick="menu('Cafe')">⬅️ Kembali</button>`;
 
 function item(n,h){
-html+=`<div class="card">${n} - Rp ${h.toLocaleString("id-ID")}
+html+=`<div class="card">${n} - Rp ${h}
 <button onclick="tambah('${n}',${h})">+</button>
 <button onclick="kurang('${n}',${h})">-</button>
 <span id="qty-${n}">0</span></div>`;
 }
 
-/* CONTOH (tidak ganggu data lama kamu) */
-item("Ayam Penyet + Nasi",25000);
-item("Kopi Aekhula Bubuk",10000);
-item("Teh Manis",7000);
+item("Kopi",10000);
+item("Teh",7000);
 
 html+=`<div class="card">
 <h3 id="totalHarga">Rp 0</h3>
@@ -278,19 +209,49 @@ html+=`<div class="card">
 document.getElementById("sub").innerHTML=html;
 }
 
+/* RM FEBRI */
+function menuFebri(){
+keranjang={};
+let html="<h3>🍛 RM. FEBRI</h3>";
+
+html+=`<button class="btn" onclick="menu('Makan')">⬅️ Kembali</button>`;
+
+function item(n,h){
+html+=`<div class="card">${n} - Rp ${h}
+<button onclick="tambah('${n}',${h})">+</button>
+<button onclick="kurang('${n}',${h})">-</button>
+<span id="qty-${n}">0</span></div>`;
+}
+
+item("Nasi Goreng",20000);
+item("Mie Goreng",18000);
+item("Ayam Geprek",22000);
+
+html+=`<div class="card">
+<h3 id="totalHarga">Rp 0</h3>
+<button class="btn btn-wa" onclick="pesanCafe()">Pesan WA</button>
+</div>`;
+
+document.getElementById("sub").innerHTML=html;
+}
+
+/* KERANJANG */
 function tambah(n,h){if(!keranjang[n])keranjang[n]={qty:0,harga:h};keranjang[n].qty++;update();}
 function kurang(n,h){if(keranjang[n]){keranjang[n].qty--;if(keranjang[n].qty<=0)delete keranjang[n];}update();}
+
 function update(){
 let total=0;
-Object.values(keranjang).forEach(i=>total+=i.qty*i.harga);
-document.getElementById("totalHarga").innerText="Rp "+total.toLocaleString("id-ID");
+Object.keys(keranjang).forEach(n=>{
+let i=keranjang[n];
+total+=i.qty*i.harga;
+let el=document.getElementById("qty-"+n);
+if(el) el.innerText=i.qty;
+});
+document.getElementById("totalHarga").innerText="Rp "+total;
 }
 
 function pesanCafe(){
-let nama=document.getElementById("custNama").value;
-let alamat=document.getElementById("custAlamat").value;
-
-let pesan="Pesanan:%0A"+nama+"%0A"+alamat+"%0A";
+let pesan="Pesanan:%0A";
 let total=0;
 
 Object.keys(keranjang).forEach(n=>{
@@ -299,7 +260,7 @@ pesan+=`${n} x${i.qty}%0A`;
 total+=i.qty*i.harga;
 });
 
-pesan+="Total Rp "+total.toLocaleString("id-ID");
+pesan+="Total Rp "+total;
 window.open("https://wa.me/"+WA+"?text="+pesan);
 }
 
@@ -309,7 +270,6 @@ let n=document.getElementById("nama").value;
 let a=document.getElementById("alamat").value;
 let l=document.getElementById("layananInput").value;
 let h=document.getElementById("hargaInput").value;
-
 let msg=`Nama:${n}%0AAlamat:${a}%0ALayanan:${l}%0AHarga:${h}`;
 window.open("https://wa.me/"+WA+"?text="+msg);
 }
@@ -319,6 +279,21 @@ document.getElementById("layananInput").value=n;
 document.getElementById("hargaInput").value=h;
 }
 
+/* ADMIN */
+const ADMIN_PASSWORD="Niasbarat2026!!!!@#@#";
+function loginAdmin(){
+if(document.getElementById("adminPass").value===ADMIN_PASSWORD){
+document.getElementById("adminPanel").style.display="block";
+alert("Login Berhasil");
+}else alert("Password Salah");
+}
+
+function kirimBerita(){
+let j=document.getElementById("judulBerita").value;
+let i=document.getElementById("isiBerita").value;
+localStorage.setItem("berita",j+"|"+i);
+alert("Berhasil");
+}
 </script>
 
 </body>
