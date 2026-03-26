@@ -136,7 +136,10 @@ Makan:[
 {nama:"RM Padang",harga:25000},
 {nama:"Rm. Febri",harga:30000}
 ],
-Cafe:[{nama:"KOPI AECHULA CAFE",harga:0}],
+Cafe:[
+{nama:"KOPI AECHULA CAFE",harga:0},
+{nama:"Nahada Cafe",harga:0} // <-- Tambahan baru
+],
 Snack:[{nama:"Es Teh",harga:5000}],
 Teknisi:[{nama:"Service TV",harga:75000}],
 TourGuide:[{nama:"Pantai Nias",harga:0}],
@@ -163,7 +166,7 @@ data[k].forEach(i=>{
 
 if(k==="Cafe"){
 html+=`<div class="card"><b>${i.nama}</b>
-<button class="btn" onclick="tampilMenuCafe()">Masuk Cafe</button></div>`;
+<button class="btn" onclick="tampilMenuCafe('${i.nama}')">Masuk Cafe</button></div>`;
 }
 
 else if(i.nama==="Rm. Febri"){
@@ -243,9 +246,9 @@ document.getElementById("sub").innerHTML=html;
 /* CAFE */
 let keranjang={};
 
-function tampilMenuCafe(){
+function tampilMenuCafe(cafeNama){
 keranjang={};
-let html="<h3>☕ KOPI AECHULA CAFE</h3>";
+let html=`<h3>☕ ${cafeNama}</h3>`;
 
 html+=`<button class="btn" onclick="menu('Cafe')">⬅️ Kembali</button>`;
 
@@ -256,8 +259,14 @@ html+=`<div class="card">${n} - Rp ${h}
 <span id="qty-${n}">0</span></div>`;
 }
 
-item("Kopi",10000);
-item("Teh",7000);
+if(cafeNama==="KOPI AECHULA CAFE"){
+    item("Kopi",10000);
+    item("Teh",7000);
+}else if(cafeNama==="Nahada Cafe"){
+    item("Kopi Susu",12000);
+    item("Cappuccino",15000);
+    item("Espresso",10000);
+}
 
 html+=`<div class="card">
 <h3 id="totalHarga">Rp 0</h3>
